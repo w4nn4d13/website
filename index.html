@@ -4,59 +4,90 @@
   <meta charset="UTF-8">
   <title>Site Under Maintenance</title>
   <style>
-    body {
+    /* Reset */
+    * {
       margin: 0;
       padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url("https://i.ibb.co/fQ9SkYQ/hacker-bg.jpg") no-repeat center center/cover;
-      color: #00ff00;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
       font-family: "Courier New", monospace;
-      text-align: center;
+      color: #00ff88;
       overflow: hidden;
     }
 
-    .glitch {
-      font-size: 3em;
-      position: relative;
-      display: inline-block;
-      animation: glitch 1s infinite;
+    /* Background Hacker Image */
+    body {
+      background: url("https://i.ibb.co/fQ9SkYQ/hacker-bg.jpg") no-repeat center center/cover;
     }
 
-    @keyframes glitch {
-      0% { text-shadow: 2px 2px red, -2px -2px blue; }
-      20% { text-shadow: -2px 2px red, 2px -2px blue; }
-      40% { text-shadow: 2px -2px red, -2px 2px blue; }
-      60% { text-shadow: -2px -2px red, 2px 2px blue; }
-      80% { text-shadow: 2px 2px red, -2px -2px blue; }
-      100% { text-shadow: none; }
+    /* Dark Overlay */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1;
     }
 
-    .subtitle {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #0f0;
-      opacity: 0.8;
-    }
-
-    /* Matrix-style rain background effect */
+    /* Matrix Canvas */
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
+      z-index: 0;
+    }
+
+    /* Centered Content */
+    .content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 3em;
+      font-weight: bold;
+      color: #00ff88;
+      text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    .subtitle {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: #aaa;
+      letter-spacing: 2px;
+    }
+
+    /* Flicker Effect */
+    @keyframes flicker {
+      0% { opacity: 1; text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88; }
+      50% { opacity: 0.8; text-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88; }
+      100% { opacity: 1; text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
     }
   </style>
 </head>
 <body>
-  <div>
-    <div class="glitch">SITE UNDER MAINTENANCE</div>
-    <div class="subtitle">We will be back soon...</div>
-  </div>
-
+  <!-- Matrix Effect -->
   <canvas id="matrix"></canvas>
+  <div class="overlay"></div>
+
+  <!-- Text Content -->
+  <div class="content">
+    <div class="title">⚠ SITE UNDER MAINTENANCE ⚠</div>
+    <div class="subtitle">We will be back online soon...</div>
+  </div>
 
   <script>
     const canvas = document.getElementById("matrix");
@@ -65,20 +96,18 @@
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
-    const letters = "01";
+    const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&";
     const fontSize = 14;
     const columns = canvas.width / fontSize;
 
     const drops = [];
-    for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
-    }
+    for (let x = 0; x < columns; x++) drops[x] = 1;
 
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#0F0";
+      ctx.fillStyle = "#00ff88";
       ctx.font = fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
@@ -92,7 +121,12 @@
       }
     }
 
-    setInterval(draw, 33);
+    setInterval(draw, 35);
+    window.addEventListener("resize", () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
   </script>
 </body>
 </html>
+
