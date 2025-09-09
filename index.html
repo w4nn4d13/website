@@ -1,132 +1,222 @@
-<!DOCTYPE html>
+<!-- maintenance-index.html
+A single-file, modern "Under Maintenance" page with 3D effects (CSS + minimal JS).
+Drop this file as `index.html` in your site root.
+-->
+
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Site Under Maintenance</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>We'll be back — Under Maintenance</title>
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg:#07070b;
+      --glass: rgba(255,255,255,0.04);
+      --accent:#7c5cff;
+      --accent2:#00d4ff;
+      --muted:rgba(255,255,255,0.6);
+      --card-w:720px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat fixed,
+                  radial-gradient(1200px 800px at 10% 20%, rgba(124,92,255,0.12), transparent 6%),
+                  radial-gradient(900px 700px at 90% 80%, rgba(0,212,255,0.06), transparent 6%),
+                  var(--bg);
+      color:#e9eefb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px;
     }
 
-    body, html {
-      height: 100%;
-      width: 100%;
-      font-family: "Courier New", monospace;
-      color: #00ff88;
+    /* Scene */
+    .scene{
+      width: min(var(--card-w), 95vw);
+      max-width:1000px;
+      perspective:1200px;
+      position:relative;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+    }
+
+    /* Floating 3D cube */
+    .cube-wrap{
+      height:380px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+    .cube{
+      width:220px;
+      height:220px;
+      transform-style:preserve-3d;
+      animation:slow-rotate 9s linear infinite, float 5s ease-in-out infinite;
+    }
+    .face{
+      position:absolute;
+      width:100%;
+      height:100%;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:18px;
+      letter-spacing:0.4px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      color: white;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      position: relative;
       overflow: hidden;
     }
+    .face img.logo{
+      max-width:60%;
+      max-height:60%;
+      opacity:0.9;
+    }
+    .face::after{content:"";position:absolute;inset:0;border-radius:18px;opacity:0.12}
+    .front{background:linear-gradient(180deg,var(--accent),var(--accent2));transform:translateZ(110px)}
+    .back{background:linear-gradient(180deg,var(--accent2),#2b2bff);transform:rotateY(180deg) translateZ(110px)}
+    .right{background:linear-gradient(180deg,#1a1a3a,#001f3a);transform:rotateY(90deg) translateZ(110px)}
+    .left{background:linear-gradient(180deg,#0b1530,#09283f);transform:rotateY(-90deg) translateZ(110px)}
+    .top{background:linear-gradient(180deg,#111827,#0f1724);transform:rotateX(90deg) translateZ(110px)}
+    .bottom{background:linear-gradient(180deg,#020617,#021126);transform:rotateX(-90deg) translateZ(110px)}
 
-    /* Background Hacker Image */
-    body {
-      background: url("https://i.ibb.co/fQ9SkYQ/hacker-bg.jpg") no-repeat center center/cover;
+    @keyframes slow-rotate{
+      0%{transform: rotateX(-12deg) rotateY(0deg)}
+      50%{transform: rotateX(8deg) rotateY(180deg)}
+      100%{transform: rotateX(-12deg) rotateY(360deg)}
+    }
+    @keyframes float{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-18px)}
+      100%{transform:translateY(0)}
     }
 
-    /* Dark Overlay */
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 1;
+    /* Card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:28px;
+      box-shadow: 0 8px 40px rgba(2,6,23,0.65);
+      min-height:240px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:14px;
+      border:1px solid rgba(255,255,255,0.04);
     }
 
-    /* Matrix Canvas */
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
+    h1{margin:0;font-size:28px}
+    p.lead{margin:0;color:var(--muted)}
+    .contact{
+      margin-top:6px;
+      display:flex;gap:12px;align-items:center;flex-wrap:wrap
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;background:var(--glass);font-weight:600;color:var(--muted);border:1px solid rgba(255,255,255,0.03)
+    }
+    .email{color:#dbe9ff;text-decoration:none;font-weight:700}
+    .meta{font-size:13px;color:rgba(255,255,255,0.45)}
+
+    /* Particles canvas */
+    canvas.particles{
+      position: absolute; inset: 0; width: 100%; height: 100%; pointer-events:none; z-index:0; opacity:0.6;
     }
 
-    /* Centered Content */
-    .content {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    /* responsive */
+    @media (max-width:880px){
+      .scene{grid-template-columns:1fr;gap:18px}
+      .cube-wrap{height:260px}
     }
 
-    .title {
-      font-size: 3em;
-      font-weight: bold;
-      color: #00ff88;
-      text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
-      animation: flicker 1.5s infinite alternate;
-    }
-
-    .subtitle {
-      margin-top: 15px;
-      font-size: 1.2em;
-      color: #aaa;
-      letter-spacing: 2px;
-    }
-
-    /* Flicker Effect */
-    @keyframes flicker {
-      0% { opacity: 1; text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88; }
-      50% { opacity: 0.8; text-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88; }
-      100% { opacity: 1; text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
+    /* small accessibility tweak for reduced-motion */
+    @media (prefers-reduced-motion:reduce){
+      .cube{animation:none}
     }
   </style>
 </head>
 <body>
-  <!-- Matrix Effect -->
-  <canvas id="matrix"></canvas>
-  <div class="overlay"></div>
+  <div class="scene" role="main">
+    <canvas class="particles" aria-hidden="true"></canvas>
 
-  <!-- Text Content -->
-  <div class="content">
-    <div class="title">⚠ SITE UNDER MAINTENANCE ⚠</div>
-    <div class="subtitle">We will be back online soon...</div>
+    <div class="cube-wrap" aria-hidden="true">
+      <div class="cube" id="cube" role="img" aria-label="rotating maintenance cube">
+        <div class="face front">
+          <img src="https://cdn-icons-png.flaticon.com/512/103/103085.png" alt="W4NN4 D13" class="logo" />
+        </div>
+        <div class="face back">we'll be back</div>
+        <div class="face right">loading</div>
+        <div class="face left">standby</div>
+        <div class="face top">updates</div>
+        <div class="face bottom">online soon</div>
+      </div>
+    </div>
+
+    <aside class="card" aria-label="maintenance message">
+      <div>
+        <h1>Site Under Maintenance</h1>
+        <p class="lead">Sorry for the inconvenience — we're performing some important updates to make things better.</p>
+      </div>
+
+      <div class="contact" aria-hidden="false">
+        <div class="pill">If you need assistance</div>
+        <a class="email" href="mailto:w4nn4d13@w4nn4d13.dpdns.org">w4nn4d13@w4nn4d13.dpdns.org</a>
+      </div>
+
+      <div class="meta">Estimated return: <strong>shortly</strong>. Thanks for your patience.</div>
+    </aside>
   </div>
 
   <script>
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
+    // Particles on canvas — lightweight
+    const canvas = document.querySelector('canvas.particles');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+    function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+    window.addEventListener('resize', resize); resize();
 
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+    function rand(min,max){return Math.random()*(max-min)+min}
+    for(let i=0;i<60;i++) particles.push({x:rand(0,W), y:rand(0,H), r:rand(0.6,2.8), vx:rand(-0.15,0.15), vy:rand(-0.06,0.06)})
 
-    const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&";
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-
-    const drops = [];
-    for (let x = 0; x < columns; x++) drops[x] = 1;
-
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "#00ff88";
-      ctx.font = fontSize + "px monospace";
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
+    function step(){
+      ctx.clearRect(0,0,W,H);
+      for(let p of particles){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x< -10) p.x = W+10; if(p.x>W+10) p.x = -10;
+        if(p.y< -10) p.y = H+10; if(p.y>H+10) p.y = -10;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = 'rgba(255,255,255,0.06)'; ctx.fill();
       }
+      requestAnimationFrame(step);
     }
+    step();
 
-    setInterval(draw, 35);
-    window.addEventListener("resize", () => {
-      canvas.height = window.innerHeight;
-      canvas.width = window.innerWidth;
+    // make cube slightly interactive (tilt with mouse)
+    const cube = document.getElementById('cube');
+    let cx = 0, cy = 0;
+    window.addEventListener('mousemove', (e)=>{
+      const nx = (e.clientX - innerWidth/2) / (innerWidth/2);
+      const ny = (e.clientY - innerHeight/2) / (innerHeight/2);
+      cx = nx*10; cy = ny*8;
+      cube.style.transform = `rotateX(${ -12 + cy }deg) rotateY(${ 0 + cx }deg)`;
     });
+
+    // restore automatic rotation when pointer leaves
+    window.addEventListener('mouseleave', ()=>{ cube.style.transform = '' });
   </script>
 </body>
 </html>
+
 
