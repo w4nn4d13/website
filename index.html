@@ -1,220 +1,107 @@
-<!-- maintenance-index.html
-A single-file, modern "Under Maintenance" page with 3D effects (CSS + minimal JS).
-Drop this file as `index.html` in your site root.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>We'll be back — Under Maintenance</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Site Under Maintenance</title>
   <style>
-    :root{
-      --bg:#07070b;
-      --glass: rgba(255,255,255,0.04);
-      --accent:#7c5cff;
-      --accent2:#00d4ff;
-      --muted:rgba(255,255,255,0.6);
-      --card-w:720px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat fixed,
-                  radial-gradient(1200px 800px at 10% 20%, rgba(124,92,255,0.12), transparent 6%),
-                  radial-gradient(900px 700px at 90% 80%, rgba(0,212,255,0.06), transparent 6%),
-                  var(--bg);
-      color:#e9eefb;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:40px;
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d1117;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #e6edf3;
     }
 
-    /* Scene */
-    .scene{
-      width: min(var(--card-w), 95vw);
-      max-width:1000px;
-      perspective:1200px;
-      position:relative;
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:28px;
-      align-items:center;
+    .container {
+      text-align: center;
+      background: #161b22;
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+      max-width: 600px;
+      width: 90%;
     }
 
-    /* Floating 3D cube */
-    .cube-wrap{
-      height:380px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-    }
-    .cube{
-      width:220px;
-      height:220px;
-      transform-style:preserve-3d;
-      animation:slow-rotate 9s linear infinite, float 5s ease-in-out infinite;
-    }
-    .face{
-      position:absolute;
-      width:100%;
-      height:100%;
-      border-radius:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:18px;
-      letter-spacing:0.4px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-      color: white;
-      text-shadow: 0 6px 18px rgba(0,0,0,0.45);
-      position: relative;
-      overflow: hidden;
-    }
-    .face img.logo{
-      max-width:60%;
-      max-height:60%;
-      opacity:0.9;
-    }
-    .face::after{content:"";position:absolute;inset:0;border-radius:18px;opacity:0.12}
-    .front{background:linear-gradient(180deg,var(--accent),var(--accent2));transform:translateZ(110px)}
-    .back{background:linear-gradient(180deg,var(--accent2),#2b2bff);transform:rotateY(180deg) translateZ(110px)}
-    .right{background:linear-gradient(180deg,#1a1a3a,#001f3a);transform:rotateY(90deg) translateZ(110px)}
-    .left{background:linear-gradient(180deg,#0b1530,#09283f);transform:rotateY(-90deg) translateZ(110px)}
-    .top{background:linear-gradient(180deg,#111827,#0f1724);transform:rotateX(90deg) translateZ(110px)}
-    .bottom{background:linear-gradient(180deg,#020617,#021126);transform:rotateX(-90deg) translateZ(110px)}
-
-    @keyframes slow-rotate{
-      0%{transform: rotateX(-12deg) rotateY(0deg)}
-      50%{transform: rotateX(8deg) rotateY(180deg)}
-      100%{transform: rotateX(-12deg) rotateY(360deg)}
-    }
-    @keyframes float{
-      0%{transform:translateY(0)}
-      50%{transform:translateY(-18px)}
-      100%{transform:translateY(0)}
+    .logo {
+      width: 80px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 10px #00ffcc);
     }
 
-    /* Card */
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:18px;
-      padding:28px;
-      box-shadow: 0 8px 40px rgba(2,6,23,0.65);
-      min-height:240px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:14px;
-      border:1px solid rgba(255,255,255,0.04);
+    h1 {
+      font-size: 2.5em;
+      color: #00ffcc;
+      margin-bottom: 15px;
     }
 
-    h1{margin:0;font-size:28px}
-    p.lead{margin:0;color:var(--muted)}
-    .contact{
-      margin-top:6px;
-      display:flex;gap:12px;align-items:center;flex-wrap:wrap
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;background:var(--glass);font-weight:600;color:var(--muted);border:1px solid rgba(255,255,255,0.03)
-    }
-    .email{color:#dbe9ff;text-decoration:none;font-weight:700}
-    .meta{font-size:13px;color:rgba(255,255,255,0.45)}
-
-    /* Particles canvas */
-    canvas.particles{
-      position: absolute; inset: 0; width: 100%; height: 100%; pointer-events:none; z-index:0; opacity:0.6;
+    p {
+      font-size: 1.2em;
+      color: #c9d1d9;
+      margin: 10px 0;
     }
 
-    /* responsive */
-    @media (max-width:880px){
-      .scene{grid-template-columns:1fr;gap:18px}
-      .cube-wrap{height:260px}
+    .email {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background: #00ffcc;
+      color: #0d1117;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
     }
 
-    /* small accessibility tweak for reduced-motion */
-    @media (prefers-reduced-motion:reduce){
-      .cube{animation:none}
+    .email:hover {
+      background: #00e6b8;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #8b949e;
+    }
+
+    .mail-text {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #8b949e;
+    }
+
+    .mail-text a {
+      color: #00ffcc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .mail-text a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="scene" role="main">
-    <canvas class="particles" aria-hidden="true"></canvas>
+  <div class="container">
+    <!-- Replace this with your own professional logo -->
+    <img src="https://img.icons8.com/ios-filled/100/00ffcc/maintenance.png" alt="Logo" class="logo"/>
 
-    <div class="cube-wrap" aria-hidden="true">
-      <div class="cube" id="cube" role="img" aria-label="rotating maintenance cube">
-        <div class="face front">
-          <img src="https://github.com/w4nn4d13/website/blob/main/b-099.jpg" alt="W4NN4 D13" class="logo" />
-        </div>
-        <div class="face back">we'll be back</div>
-        <div class="face right">loading</div>
-        <div class="face left">standby</div>
-        <div class="face top">updates</div>
-        <div class="face bottom">online soon</div>
-      </div>
+    <h1>Site Under Maintenance</h1>
+    <p>We are currently performing scheduled maintenance.</p>
+    <p>Please check back later.</p>
+
+    <!-- Contact button -->
+    <a href="mailto:w4nn4d13@w4nn4d13.dpdns.org" class="email">📧 Contact Us</a>
+
+    <!-- Plain text mail for visibility -->
+    <div class="mail-text">
+      Or email us at: <a href="mailto:w4nn4d13@w4nn4d13.dpdns.org">w4nn4d13@w4nn4d13.dpdns.org</a>
     </div>
 
-    <aside class="card" aria-label="maintenance message">
-      <div>
-        <h1>Site Under Maintenance</h1>
-        <p class="lead">Sorry for the inconvenience — we're performing some important updates to make things better.</p>
-      </div>
-
-      <div class="contact" aria-hidden="false">
-        <div class="pill">If you need assistance</div>
-        <a class="email" href="mailto:w4nn4d13@w4nn4d13.dpdns.org">w4nn4d13@w4nn4d13.dpdns.org</a>
-      </div>
-
-      <div class="meta">Estimated return: <strong>shortly</strong>. Thanks for your patience.</div>
-    </aside>
+    <div class="footer">© 2025 All Rights Reserved</div>
   </div>
-
-  <script>
-    // Particles on canvas — lightweight
-    const canvas = document.querySelector('canvas.particles');
-    const ctx = canvas.getContext('2d');
-    let W, H, particles = [];
-    function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
-    window.addEventListener('resize', resize); resize();
-
-    function rand(min,max){return Math.random()*(max-min)+min}
-    for(let i=0;i<60;i++) particles.push({x:rand(0,W), y:rand(0,H), r:rand(0.6,2.8), vx:rand(-0.15,0.15), vy:rand(-0.06,0.06)})
-
-    function step(){
-      ctx.clearRect(0,0,W,H);
-      for(let p of particles){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x< -10) p.x = W+10; if(p.x>W+10) p.x = -10;
-        if(p.y< -10) p.y = H+10; if(p.y>H+10) p.y = -10;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle = 'rgba(255,255,255,0.06)'; ctx.fill();
-      }
-      requestAnimationFrame(step);
-    }
-    step();
-
-    // make cube slightly interactive (tilt with mouse)
-    const cube = document.getElementById('cube');
-    let cx = 0, cy = 0;
-    window.addEventListener('mousemove', (e)=>{
-      const nx = (e.clientX - innerWidth/2) / (innerWidth/2);
-      const ny = (e.clientY - innerHeight/2) / (innerHeight/2);
-      cx = nx*10; cy = ny*8;
-      cube.style.transform = `rotateX(${ -12 + cy }deg) rotateY(${ 0 + cx }deg)`;
-    });
-
-    // restore automatic rotation when pointer leaves
-    window.addEventListener('mouseleave', ()=>{ cube.style.transform = '' });
-  </script>
 </body>
 </html>
+
