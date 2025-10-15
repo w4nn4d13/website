@@ -3,359 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>◉ CLASSIFIED ACCESS ◉</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #0a0a0a;
-            color: #00ff00;
-            font-family: 'Share Tech Mono', monospace;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Matrix rain effect background */
-        #matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-        }
-        
-        /* Scanline effect */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 1000;
-        }
-        
-        /* Screen flicker */
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.95; }
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            animation: flicker 0.15s infinite;
-        }
-        
-        /* Terminal header */
-        .terminal-header {
-            border: 2px solid #00ff00;
-            border-bottom: none;
-            padding: 10px;
-            background: rgba(0, 255, 0, 0.05);
-            display: flex;
-            align-items: center;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
-        }
-        
-        .terminal-buttons {
-            display: flex;
-            gap: 8px;
-            margin-right: 15px;
-        }
-        
-        .btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff0000;
-        }
-        
-        .btn:nth-child(2) { background: #ffff00; }
-        .btn:nth-child(3) { background: #00ff00; }
-        
-        .terminal-title {
-            font-size: 14px;
-            letter-spacing: 2px;
-        }
-        
-        /* Terminal body */
-        .terminal-body {
-            border: 2px solid #00ff00;
-            padding: 30px;
-            background: rgba(0, 20, 0, 0.9);
-            min-height: 500px;
-            box-shadow: 
-                0 0 30px rgba(0, 255, 0, 0.3),
-                inset 0 0 100px rgba(0, 255, 0, 0.05);
-        }
-        
-        /* Typing animation */
-        .typing {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid #00ff00;
-            animation: typing 2s steps(40) 1s forwards, blink 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-        
-        h1 {
-            color: #ff0000;
-            text-shadow: 0 0 10px #ff0000;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-            animation: glitch 1s infinite;
-        }
-        
-        @keyframes glitch {
-            0%, 100% { text-shadow: 0 0 10px #ff0000; }
-            25% { text-shadow: -2px 0 10px #ff0000, 2px 0 10px #00ff00; }
-            50% { text-shadow: 2px 0 10px #ff0000, -2px 0 10px #00ff00; }
-            75% { text-shadow: 0 2px 10px #ff0000, 0 -2px 10px #00ff00; }
-        }
-        
-        .prompt {
-            color: #00ff00;
-            margin: 15px 0;
-        }
-        
-        .prompt::before {
-            content: "root@darknet:~$ ";
-            color: #00ffff;
-        }
-        
-        .link {
-            color: #00ff00;
-            text-decoration: none;
-            border: 1px solid #00ff00;
-            padding: 10px 20px;
-            display: inline-block;
-            margin: 10px 5px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .link:hover {
-            background: #00ff00;
-            color: #000;
-            box-shadow: 0 0 20px #00ff00;
-        }
-        
-        .link::before {
-            content: ">";
-            margin-right: 10px;
-            animation: pulse 1s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
-        /* Warning box */
-        .warning {
-            border: 2px solid #ff0000;
-            padding: 20px;
-            margin: 20px 0;
-            background: rgba(255, 0, 0, 0.1);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-            animation: warning-pulse 2s infinite;
-        }
-        
-        @keyframes warning-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
-            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); }
-        }
-        
-        .warning-title {
-            color: #ff0000;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        
-        /* Code block */
-        .code-block {
-            background: #000;
-            border-left: 3px solid #00ff00;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: 'VT323', monospace;
-            font-size: 1.2em;
-            overflow-x: auto;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            border-top: 1px solid #00ff00;
-            color: #00ff00;
-            opacity: 0.5;
-        }
-        
-        /* Glowing text */
-        .glow {
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-        }
-        
-        /* Countdown or timer effect */
-        .timer {
-            font-size: 2em;
-            color: #ff0000;
-            text-align: center;
-            margin: 20px 0;
-            font-family: 'VT323', monospace;
-        }
-    </style>
+    <meta name="description" content="Secure Anonymous Marketplace">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="onion-location" content="http://darkmarket7x4j2k9l.onion">
+    <title>DarkMarket - Anonymous Services</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="matrix-bg"></canvas>
+    <div class="matrix-overlay"></div>
     
-    <div class="container">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn"></span>
-                <span class="btn"></span>
-                <span class="btn"></span>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">◉</span>
+                <span class="logo-text">DARKMARKET</span>
             </div>
-            <span class="terminal-title">CLASSIFIED_SYSTEM_ACCESS.exe</span>
-        </div>
-        
-        <div class="terminal-body">
-            <h1>◉ UNAUTHORIZED ACCESS DETECTED ◉</h1>
-            
-            <div class="prompt typing">Initializing secure connection...</div>
-            
-            <div class="code-block">
-                [████████████████████████████] 100%
-                <br>Connection established...
-                <br>Decrypting classified data...
-                <br>Access granted to: NETWORK_FORENSICS_LAB
-            </div>
-            
-            <div class="warning">
-                <div class="warning-title">⚠ SECURITY CLEARANCE REQUIRED ⚠</div>
-                <p>You have entered a restricted network monitoring station.</p>
-                <p>All activities are being logged and traced.</p>
-                <p>Proceed only if you have proper authorization.</p>
-            </div>
-            
-            <div class="prompt">Available classified files:</div>
-            
-            <div style="margin: 20px 0;">
-                <a href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" class="link glow">
-                    <i class="fas fa-file-archive"></i> DOWNLOAD_PACKET_CAPTURE
-                </a>
-                
-                <a href="#" class="link" onclick="showHint()">
-                    <i class="fas fa-question-circle"></i> REQUEST_HINT
-                </a>
-                
-                <a href="#" class="link" onclick="showWarning()">
-                    <i class="fas fa-skull-crossbones"></i> ABORT_MISSION
-                </a>
-            </div>
-            
-            <div class="code-block">
-                <div class="prompt">system_info:</div>
-                >> Challenge: Network Forensics<br>
-                >> Difficulty: MEDIUM<br>
-                >> Objective: Extract hidden intelligence from captured traffic<br>
-                >> Tools Required: Wireshark, Network Analysis Skills<br>
-                >> Flag Format: flag{...}<br>
-            </div>
-            
-            <div class="prompt">Need assistance? Check the hidden directories...</div>
-            
-            <div class="footer">
-                <i class="fas fa-lock"></i> ENCRYPTED CONNECTION | SESSION: <?php echo bin2hex(random_bytes(8)); ?><br>
-                w4nn4d13.dpdns.org | CTF Division
+            <nav class="main-nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#vendors" class="nav-link">Vendors</a>
+                <a href="#support" class="nav-link">Support</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-login">Login</button>
+                <button class="btn-register">Register</button>
             </div>
         </div>
-    </div>
-    
-    <script>
-        // Matrix rain effect
-        const canvas = document.getElementById('matrix-bg');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-        
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#00ff00';
-            ctx.font = fontSize + 'px monospace';
-            
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to DarkMarket</h1>
+                <p class="hero-subtitle">Secure. Anonymous. Trusted.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">10,247</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3,891</div>
+                        <div class="stat-label">Verified Vendors</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Available Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔐</div>
+                    <h3 class="service-title">Security Tools</h3>
+                    <p class="service-desc">Advanced encryption and anonymity tools</p>
+                    <div class="service-meta">
+                        <span class="meta-item">2,341 listings</span>
+                        <span class="meta-item">⭐ 4.8/5</span>
+                    </div>
+                </div>
                 
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-        
-        setInterval(drawMatrix, 35);
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-        
-        // Interactive functions
-        function showHint() {
-            alert('HINT: Look for HTTP objects in the packet capture.\nUse Wireshark > File > Export Objects > HTTP');
-        }
-        
-        function showWarning() {
-            alert('⚠ ABORT SEQUENCE INITIATED ⚠\nJust kidding! Keep hacking, friend.');
-        }
-        
-        // Add random glitch effects
-        setInterval(() => {
-            document.body.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px)`;
-            setTimeout(() => {
-                document.body.style.transform = '';
-            }, 50);
-        }, 5000);
-    </script>
+                <div class="service-card">
+                    <div class="service-icon">💳</div>
+                    <h3 class="service-title">Digital Assets</h3>
+                    <p class="service-desc">Verified digital goods and accounts</p>
+                    <div class="service-meta">
+                        <span class="meta-item">5,892 listings</span>
+                        <span class="meta-item">⭐ 4.6/5</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Data Services</h3>
+                    <p class="service-desc">Information and intelligence resources</p>
+                    <div class="service-meta">
+                        <span class="meta-item">1,567 listings</span>
+                        <span class="meta-item">⭐ 4.9/5</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3 class="service-title">Developer Tools</h3>
+                    <p class="service-desc">Frameworks and development resources</p>
+                    <div class="service-meta">
+                        <span class="meta-item">983 listings</span>
+                        <span class="meta-item">⭐ 4.7/5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vendors" class="vendors-section">
+        <div class="container">
+            <h2 class="section-title">Featured Vendors</h2>
+            <div class="vendors-grid">
+                <div class="vendor-card">
+                    <div class="vendor-header">
+                        <div class="vendor-avatar">SN</div>
+                        <div class="vendor-info">
+                            <h3 class="vendor-name">ShadowNet</h3>
+                            <div class="vendor-rating">⭐⭐⭐⭐⭐ (4,821)</div>
+                        </div>
+                    </div>
+                    <div class="vendor-stats">
+                        <div class="vendor-stat">
+                            <span class="stat-label">Sales</span>
+                            <span class="stat-value">12,489</span>
+                        </div>
+                        <div class="vendor-stat">
+                            <span class="stat-label">Member Since</span>
+                            <span class="stat-value">2019</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vendor-card">
+                    <div class="vendor-header">
+                        <div class="vendor-avatar">DK</div>
+                        <div class="vendor-info">
+                            <h3 class="vendor-name">DataKing</h3>
+                            <div class="vendor-rating">⭐⭐⭐⭐⭐ (3,912)</div>
+                        </div>
+                    </div>
+                    <div class="vendor-stats">
+                        <div class="vendor-stat">
+                            <span class="stat-label">Sales</span>
+                            <span class="stat-value">9,234</span>
+                        </div>
+                        <div class="vendor-stat">
+                            <span class="stat-label">Member Since</span>
+                            <span class="stat-value">2020</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vendor-card">
+                    <div class="vendor-header">
+                        <div class="vendor-avatar">CX</div>
+                        <div class="vendor-info">
+                            <h3 class="vendor-name">CipherX</h3>
+                            <div class="vendor-rating">⭐⭐⭐⭐☆ (2,567)</div>
+                        </div>
+                    </div>
+                    <div class="vendor-stats">
+                        <div class="vendor-stat">
+                            <span class="stat-label">Sales</span>
+                            <span class="stat-value">7,891</span>
+                        </div>
+                        <div class="vendor-stat">
+                            <span class="stat-label">Member Since</span>
+                            <span class="stat-value">2021</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="support" class="support-section">
+        <div class="container">
+            <h2 class="section-title">Support Center</h2>
+            <div class="support-grid">
+                <div class="support-card">
+                    <h3>Getting Started</h3>
+                    <ul class="support-list">
+                        <li><a href="#">Account Registration</a></li>
+                        <li><a href="#">Security Best Practices</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Escrow System</a></li>
+                    </ul>
+                </div>
+                
+                <div class="support-card">
+                    <h3>Vendor Information</h3>
+                    <ul class="support-list">
+                        <li><a href="#">Become a Vendor</a></li>
+                        <li><a href="#">Listing Guidelines</a></li>
+                        <li><a href="#">Fee Structure</a></li>
+                        <li><a href="#">Dispute Resolution</a></li>
+                    </ul>
+                </div>
+                
+                <div class="support-card">
+                    <h3>Security</h3>
+                    <ul class="support-list">
+                        <li><a href="#">PGP Encryption</a></li>
+                        <li><a href="#">2FA Setup</a></li>
+                        <li><a href="#">Anonymous Browsing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-label">Support Ticket</div>
+                        <div class="info-value">Available 24/7 via Dashboard</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Emergency Contact</div>
+                        <div class="info-value">support@darkmarket.onion</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">PGP Key</div>
+                        <div class="info-value">Available in Support Section</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Response Time</div>
+                        <div class="info-value">Average 2-4 hours</div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Subject" class="form-input">
+                        <textarea placeholder="Message" class="form-textarea" rows="6"></textarea>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Vendor Agreement</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-info">
+                    <p>Session: 7x4k9l2m8n3p6q1r</p>
+                    <p>Encrypted Connection Active</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
