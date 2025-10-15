@@ -3,265 +3,632 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Secure Anonymous Marketplace">
+    <meta name="author" content="w4nn4d13">
+    <meta name="description" content="W4NN4D13 Secure Marketplace">
     <meta name="robots" content="noindex, nofollow">
-    <meta http-equiv="onion-location" content="http://darkmarket7x4j2k9l.onion">
-    <title>DarkMarket - Anonymous Services</title>
+    <title>W4NN4D13 Market - Secure Anonymous Trading Platform</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="matrix-overlay"></div>
-    
-    <header class="main-header">
-        <div class="container">
-            <div class="logo">
-                <span class="logo-icon">◉</span>
-                <span class="logo-text">DARKMARKET</span>
+    <!-- IP Ban Warning Page -->
+    <div id="ban-page" class="page-container" style="display: none;">
+        <div class="ban-screen">
+            <div class="ban-icon">⚠</div>
+            <h1 class="ban-title">ACCESS DENIED</h1>
+            <div class="ban-message">
+                <p>Your IP address has been flagged for suspicious activity.</p>
+                <p class="ban-ip">IP: <span id="user-ip">185.220.101.47</span></p>
+                <p class="ban-reason">Reason: Multiple failed authentication attempts</p>
             </div>
-            <nav class="main-nav">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#vendors" class="nav-link">Vendors</a>
-                <a href="#support" class="nav-link">Support</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            <div class="header-actions">
-                <button class="btn-login">Login</button>
-                <button class="btn-register">Register</button>
+            <div class="ban-timer">
+                <p>Lockout expires in:</p>
+                <div id="ban-countdown" class="countdown-display">05:00</div>
             </div>
-        </div>
-    </header>
-
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Welcome to DarkMarket</h1>
-                <p class="hero-subtitle">Secure. Anonymous. Trusted.</p>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">10,247</div>
-                        <div class="stat-label">Active Users</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3,891</div>
-                        <div class="stat-label">Verified Vendors</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">99.9%</div>
-                        <div class="stat-label">Uptime</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support</div>
-                    </div>
-                </div>
+            <div class="ban-actions">
+                <button onclick="bypassBan()" class="btn-bypass">Request Manual Review</button>
+                <button onclick="showMainPage()" class="btn-back">Return to Main Page</button>
+            </div>
+            <div class="ban-footer">
+                <p>If you believe this is an error, contact: security@w4nn4d13.onion</p>
+                <p>Incident ID: #DM-2025-10-15-${Math.floor(Math.random()*10000)}</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2 class="section-title">Available Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🔐</div>
-                    <h3 class="service-title">Security Tools</h3>
-                    <p class="service-desc">Advanced encryption and anonymity tools</p>
-                    <div class="service-meta">
-                        <span class="meta-item">2,341 listings</span>
-                        <span class="meta-item">⭐ 4.8/5</span>
-                    </div>
+    <!-- Main Landing Page -->
+    <div id="main-page" class="page-container">
+        <div class="matrix-rain"></div>
+        
+        <header class="main-header">
+            <div class="container">
+                <div class="logo">
+                    <span class="logo-icon">◈</span>
+                    <span class="logo-text">W4NN4D13</span>
+                    <span class="logo-suffix">.MARKET</span>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">💳</div>
-                    <h3 class="service-title">Digital Assets</h3>
-                    <p class="service-desc">Verified digital goods and accounts</p>
-                    <div class="service-meta">
-                        <span class="meta-item">5,892 listings</span>
-                        <span class="meta-item">⭐ 4.6/5</span>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3 class="service-title">Data Services</h3>
-                    <p class="service-desc">Information and intelligence resources</p>
-                    <div class="service-meta">
-                        <span class="meta-item">1,567 listings</span>
-                        <span class="meta-item">⭐ 4.9/5</span>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">🛠️</div>
-                    <h3 class="service-title">Developer Tools</h3>
-                    <p class="service-desc">Frameworks and development resources</p>
-                    <div class="service-meta">
-                        <span class="meta-item">983 listings</span>
-                        <span class="meta-item">⭐ 4.7/5</span>
-                    </div>
+                <nav class="main-nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#marketplace" class="nav-link">Marketplace</a>
+                    <a href="#vendors" class="nav-link">Vendors</a>
+                    <a href="#escrow" class="nav-link">Escrow</a>
+                    <a href="#forums" class="nav-link">Forums</a>
+                    <a href="#support" class="nav-link">Support</a>
+                </nav>
+                <div class="header-actions">
+                    <button onclick="showLoginPage()" class="btn-login">Login</button>
+                    <button onclick="showRegisterPage()" class="btn-register">Register</button>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <section id="vendors" class="vendors-section">
-        <div class="container">
-            <h2 class="section-title">Featured Vendors</h2>
-            <div class="vendors-grid">
-                <div class="vendor-card">
-                    <div class="vendor-header">
-                        <div class="vendor-avatar">SN</div>
-                        <div class="vendor-info">
-                            <h3 class="vendor-name">ShadowNet</h3>
-                            <div class="vendor-rating">⭐⭐⭐⭐⭐ (4,821)</div>
-                        </div>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">EST. 2019</div>
+                    <h1 class="hero-title">W4NN4D13 MARKETPLACE</h1>
+                    <p class="hero-subtitle">The Most Trusted Anonymous Trading Platform</p>
+                    <div class="hero-features">
+                        <div class="feature-tag">256-bit Encryption</div>
+                        <div class="feature-tag">Multi-sig Escrow</div>
+                        <div class="feature-tag">PGP 2048</div>
+                        <div class="feature-tag">2FA Protected</div>
                     </div>
-                    <div class="vendor-stats">
-                        <div class="vendor-stat">
-                            <span class="stat-label">Sales</span>
-                            <span class="stat-value">12,489</span>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-number" data-count="47891">0</div>
+                            <div class="stat-label">Active Members</div>
                         </div>
-                        <div class="vendor-stat">
-                            <span class="stat-label">Member Since</span>
-                            <span class="stat-value">2019</span>
+                        <div class="stat-item">
+                            <div class="stat-icon">🏪</div>
+                            <div class="stat-number" data-count="2847">0</div>
+                            <div class="stat-label">Verified Vendors</div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="vendor-card">
-                    <div class="vendor-header">
-                        <div class="vendor-avatar">DK</div>
-                        <div class="vendor-info">
-                            <h3 class="vendor-name">DataKing</h3>
-                            <div class="vendor-rating">⭐⭐⭐⭐⭐ (3,912)</div>
+                        <div class="stat-item">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-number" data-count="892341">0</div>
+                            <div class="stat-label">Completed Trades</div>
                         </div>
-                    </div>
-                    <div class="vendor-stats">
-                        <div class="vendor-stat">
-                            <span class="stat-label">Sales</span>
-                            <span class="stat-value">9,234</span>
-                        </div>
-                        <div class="vendor-stat">
-                            <span class="stat-label">Member Since</span>
-                            <span class="stat-value">2020</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="vendor-card">
-                    <div class="vendor-header">
-                        <div class="vendor-avatar">CX</div>
-                        <div class="vendor-info">
-                            <h3 class="vendor-name">CipherX</h3>
-                            <div class="vendor-rating">⭐⭐⭐⭐☆ (2,567)</div>
-                        </div>
-                    </div>
-                    <div class="vendor-stats">
-                        <div class="vendor-stat">
-                            <span class="stat-label">Sales</span>
-                            <span class="stat-value">7,891</span>
-                        </div>
-                        <div class="vendor-stat">
-                            <span class="stat-label">Member Since</span>
-                            <span class="stat-value">2021</span>
+                        <div class="stat-item">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-number" data-count="99.8">0</div>
+                            <div class="stat-label">Success Rate %</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="support" class="support-section">
-        <div class="container">
-            <h2 class="section-title">Support Center</h2>
-            <div class="support-grid">
-                <div class="support-card">
-                    <h3>Getting Started</h3>
-                    <ul class="support-list">
-                        <li><a href="#">Account Registration</a></li>
-                        <li><a href="#">Security Best Practices</a></li>
-                        <li><a href="#">Payment Methods</a></li>
-                        <li><a href="#">Escrow System</a></li>
+        <section id="marketplace" class="marketplace-section">
+            <div class="container">
+                <h2 class="section-title">Featured Categories</h2>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-icon">🔐</div>
+                        <h3>Security & Privacy</h3>
+                        <p>Encryption tools, VPN services, secure hardware</p>
+                        <div class="category-meta">
+                            <span>4,891 listings</span>
+                            <span>⭐ 4.9/5</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">💳</div>
+                        <h3>Digital Services</h3>
+                        <p>Accounts, credentials, digital assets</p>
+                        <div class="category-meta">
+                            <span>12,341 listings</span>
+                            <span>⭐ 4.7/5</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">📊</div>
+                        <h3>Data Intelligence</h3>
+                        <p>Research data, market intelligence, analytics</p>
+                        <div class="category-meta">
+                            <span>3,567 listings</span>
+                            <span>⭐ 4.8/5</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">🛠️</div>
+                        <h3>Developer Tools</h3>
+                        <p>Scripts, frameworks, automation tools</p>
+                        <div class="category-meta">
+                            <span>2,198 listings</span>
+                            <span>⭐ 4.9/5</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">📱</div>
+                        <h3>Mobile Solutions</h3>
+                        <p>Apps, exploits, mobile security</p>
+                        <div class="category-meta">
+                            <span>1,834 listings</span>
+                            <span>⭐ 4.6/5</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">🎓</div>
+                        <h3>Education</h3>
+                        <p>Tutorials, courses, certifications</p>
+                        <div class="category-meta">
+                            <span>892 listings</span>
+                            <span>⭐ 5.0/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vendors" class="vendors-section">
+            <div class="container">
+                <h2 class="section-title">Top Vendors This Month</h2>
+                <div class="vendors-grid">
+                    <div class="vendor-card">
+                        <div class="vendor-badge">TOP SELLER</div>
+                        <div class="vendor-header">
+                            <div class="vendor-avatar">SN</div>
+                            <div class="vendor-info">
+                                <h3>ShadowNet</h3>
+                                <div class="vendor-level">Level 5 Elite</div>
+                            </div>
+                        </div>
+                        <div class="vendor-rating">⭐⭐⭐⭐⭐ (8,921 reviews)</div>
+                        <div class="vendor-stats">
+                            <div class="vendor-stat">
+                                <span class="stat-label">Total Sales</span>
+                                <span class="stat-value">47,891</span>
+                            </div>
+                            <div class="vendor-stat">
+                                <span class="stat-label">Member Since</span>
+                                <span class="stat-value">Jan 2019</span>
+                            </div>
+                            <div class="vendor-stat">
+                                <span class="stat-label">Response Time</span>
+                                <span class="stat-value">< 2hrs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vendor-card">
+                        <div class="vendor-badge verified">VERIFIED</div>
+                        <div class="vendor-header">
+                            <div class="vendor-avatar">CX</div>
+                            <div class="vendor-info">
+                                <h3>CipherXpert</h3>
+                                <div class="vendor-level">Level 4 Master</div>
+                            </div>
+                        </div>
+                        <div class="vendor-rating">⭐⭐⭐⭐⭐ (6,234 reviews)</div>
+                        <div class="vendor-stats">
+                            <div class="vendor-stat">
+                                <span class="stat-label">Total Sales</span>
+                                <span class="stat-value">31,567</span>
+                            </div>
+                            <div class="vendor-stat">
+                                <span class="stat-label">Member Since</span>
+                                <span class="stat-value">Mar 2020</span>
+                            </div>
+                            <div class="vendor-stat">
+                                <span class="stat-label">Response Time</span>
+                                <span class="stat-value">< 4hrs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vendor-card">
+                        <div class="vendor-badge trusted">TRUSTED</div>
+                        <div class="vendor-header">
+                            <div class="vendor-avatar">DK</div>
+                            <div class="vendor-info">
+                                <h3>DataKingpin</h3>
+                                <div class="vendor-level">Level 4 Master</div>
+                            </div>
+                        </div>
+                        <div class="vendor-rating">⭐⭐⭐⭐☆ (4,891 reviews)</div>
+                        <div class="vendor-stats">
+                            <div class="vendor-stat">
+                                <span class="stat-label">Total Sales</span>
+                                <span class="stat-value">28,945</span>
+                            </div>
+                            <div class="vendor-stat">
+                                <span class="stat-label">Member Since</span>
+                                <span class="stat-value">Jul 2020</span>
+                            </div>
+                            <div class="vendor-stat">
+                                <span class="stat-label">Response Time</span>
+                                <span class="stat-value">< 6hrs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="escrow" class="security-section">
+            <div class="container">
+                <h2 class="section-title">Security Features</h2>
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">🔒</div>
+                        <h3>Multi-Signature Escrow</h3>
+                        <p>All transactions protected by 2-of-3 multi-sig escrow system. Funds released only when both parties confirm.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">🛡️</div>
+                        <h3>End-to-End Encryption</h3>
+                        <p>All communications encrypted with PGP 2048-bit keys. Messages automatically deleted after 7 days.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">⚖️</div>
+                        <h3>Dispute Resolution</h3>
+                        <p>Experienced moderators handle disputes fairly. Average resolution time: 24-48 hours.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">🔐</div>
+                        <h3>Two-Factor Authentication</h3>
+                        <p>Mandatory 2FA for all accounts. Support for TOTP, hardware keys, and PGP authentication.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="support-section">
+            <div class="container">
+                <h2 class="section-title">Support & Resources</h2>
+                <div class="support-grid">
+                    <div class="support-card">
+                        <h3>🆘 Help Center</h3>
+                        <ul>
+                            <li><a href="#">Getting Started Guide</a></li>
+                            <li><a href="#">Security Best Practices</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Vendor Registration</a></li>
+                            <li><a href="#">Dispute Guidelines</a></li>
+                        </ul>
+                    </div>
+                    <div class="support-card">
+                        <h3>💬 Contact Support</h3>
+                        <ul>
+                            <li><a href="#">Submit Support Ticket</a></li>
+                            <li><a href="#">Live Chat (24/7)</a></li>
+                            <li><a href="#">Emergency Contact</a></li>
+                            <li><a href="#">PGP Public Key</a></li>
+                            <li><a href="#">Status Page</a></li>
+                        </ul>
+                    </div>
+                    <div class="support-card">
+                        <h3>📚 Documentation</h3>
+                        <ul>
+                            <li><a href="#">API Documentation</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Vendor Agreement</a></li>
+                            <li><a href="#">Fee Structure</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <span class="logo-icon">◈</span>
+                            <span class="logo-text">W4NN4D13</span>
+                        </div>
+                        <p>Trusted since 2019</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Platform</h4>
+                            <a href="#">About Us</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Rules & Guidelines</a>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Support</h4>
+                            <a href="#">Help Center</a>
+                            <a href="#">Contact Us</a>
+                            <a href="#">Report Issue</a>
+                            <a href="#">Security</a>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Community</h4>
+                            <a href="#">Forums</a>
+                            <a href="#">Blog</a>
+                            <a href="#">News</a>
+                            <a href="#">Updates</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>Session ID: w4nn4-${Math.random().toString(36).substr(2, 9)}</p>
+                    <p>Encrypted Connection Active | Tor Circuit: 3-Hop</p>
+                    <p>© 2019-2025 W4NN4D13 Market. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page-container" style="display: none;">
+        <div class="auth-screen">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <div class="logo-large">
+                        <span class="logo-icon">◈</span>
+                        <span class="logo-text">W4NN4D13</span>
+                    </div>
+                    <h2>Member Login</h2>
+                    <p>Access your secure account</p>
+                </div>
+
+                <div class="timer-display" id="login-timer">
+                    <div class="timer-label">Security Check</div>
+                    <div class="timer-countdown">
+                        <span id="timer-seconds">5</span>
+                    </div>
+                    <div class="timer-message">Verifying system integrity...</div>
+                </div>
+
+                <form id="login-form" class="auth-form" style="display: none;" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="login-username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>2FA Code</label>
+                        <input type="text" id="login-2fa" placeholder="6-digit code" maxlength="6" required>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Remember this device for 30 days</label>
+                    </div>
+                    <button type="submit" class="btn-submit">Login to Account</button>
+                    <div class="form-links">
+                        <a href="#" onclick="triggerBan()">Forgot Password?</a>
+                        <a href="#" onclick="triggerBan()">Lost 2FA Device?</a>
+                    </div>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" onclick="showRegisterPage()">Register here</a></p>
+                    <p><a href="#" onclick="showMainPage()">← Back to main page</a></p>
+                </div>
+
+                <div class="security-notice">
+                    <p>⚠️ Never share your credentials. We will never ask for your password.</p>
+                    <p>🔒 All connections are encrypted and monitored for security.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="register-page" class="page-container" style="display: none;">
+        <div class="auth-screen">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <div class="logo-large">
+                        <span class="logo-icon">◈</span>
+                        <span class="logo-text">W4NN4D13</span>
+                    </div>
+                    <h2>Create Account</h2>
+                    <p>Join the trusted marketplace</p>
+                </div>
+
+                <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="reg-username" placeholder="Choose username (4-20 characters)" required>
+                        <small>Username must be alphanumeric</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Email (Optional)</label>
+                        <input type="email" id="reg-email" placeholder="email@secure.com (for recovery only)">
+                        <small>Encrypted and never shared</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="reg-password" placeholder="Strong password (min 12 characters)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="reg-confirm" placeholder="Re-enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PIN Code</label>
+                        <input type="text" id="reg-pin" placeholder="6-digit PIN for withdrawals" maxlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Invitation Code</label>
+                        <input type="text" id="reg-invite" placeholder="Enter invitation code" required>
+                        <small>Registration requires invitation code</small>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="accept-terms" required>
+                        <label for="accept-terms">I agree to the Terms of Service and Privacy Policy</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="accept-pgp" required>
+                        <label for="accept-pgp">I understand PGP encryption is required for all communications</label>
+                    </div>
+                    <button type="submit" class="btn-submit">Create Account</button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" onclick="showLoginPage()">Login here</a></p>
+                    <p><a href="#" onclick="showMainPage()">← Back to main page</a></p>
+                </div>
+
+                <div class="registration-info">
+                    <h3>Registration Requirements</h3>
+                    <ul>
+                        <li>Valid invitation code from existing member</li>
+                        <li>Strong password (minimum 12 characters)</li>
+                        <li>PGP key pair (generated after registration)</li>
+                        <li>2FA authenticator app (mandatory)</li>
                     </ul>
                 </div>
-                
-                <div class="support-card">
-                    <h3>Vendor Information</h3>
-                    <ul class="support-list">
-                        <li><a href="#">Become a Vendor</a></li>
-                        <li><a href="#">Listing Guidelines</a></li>
-                        <li><a href="#">Fee Structure</a></li>
-                        <li><a href="#">Dispute Resolution</a></li>
-                    </ul>
-                </div>
-                
-                <div class="support-card">
-                    <h3>Security</h3>
-                    <ul class="support-list">
-                        <li><a href="#">PGP Encryption</a></li>
-                        <li><a href="#">2FA Setup</a></li>
-                        <li><a href="#">Anonymous Browsing</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <div class="info-label">Support Ticket</div>
-                        <div class="info-value">Available 24/7 via Dashboard</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Emergency Contact</div>
-                        <div class="info-value">support@darkmarket.onion</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">PGP Key</div>
-                        <div class="info-value">Available in Support Section</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Response Time</div>
-                        <div class="info-value">Average 2-4 hours</div>
-                    </div>
-                </div>
+    <script>
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
                 
-                <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Subject" class="form-input">
-                        <textarea placeholder="Message" class="form-textarea" rows="6"></textarea>
-                        <button type="submit" class="btn-submit">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                updateCounter();
+            });
+        }
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Vendor Agreement</a>
-                    <a href="#">FAQ</a>
-                </div>
-                <div class="footer-info">
-                    <p>Session: 7x4k9l2m8n3p6q1r</p>
-                    <p>Encrypted Connection Active</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+        // Random IP generator
+        function generateRandomIP() {
+            return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}`;
+        }
 
-    <script src="script.js"></script>
+        // Show/Hide pages
+        function showPage(pageId) {
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        function showMainPage() {
+            showPage('main-page');
+            setTimeout(animateCounters, 100);
+        }
+
+        function showLoginPage() {
+            showPage('login-page');
+            startLoginTimer();
+        }
+
+        function showRegisterPage() {
+            showPage('register-page');
+        }
+
+        function showBanPage() {
+            document.getElementById('user-ip').textContent = generateRandomIP();
+            showPage('ban-page');
+            startBanCountdown();
+        }
+
+        // Login timer (5 seconds)
+        function startLoginTimer() {
+            let seconds = 5;
+            const timerElement = document.getElementById('timer-seconds');
+            const timerDisplay = document.getElementById('login-timer');
+            const loginForm = document.getElementById('login-form');
+            
+            const interval = setInterval(() => {
+                seconds--;
+                timerElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    timerDisplay.style.display = 'none';
+                    loginForm.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Ban countdown timer
+        function startBanCountdown() {
+            let minutes = 4;
+            let seconds = 59;
+            const countdownElement = document.getElementById('ban-countdown');
+            
+            const interval = setInterval(() => {
+                seconds--;
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                }
+                
+                if (minutes < 0) {
+                    clearInterval(interval);
+                    countdownElement.textContent = 'EXPIRED';
+                    return;
+                }
+                
+                const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                countdownElement.textContent = display;
+            }, 1000);
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            const twofa = document.getElementById('login-2fa').value;
+            
+            if (username === 'w4nn4d13' && password === 'admin123' && twofa === '123456') {
+                alert('Login successful! Access granted.');
+                showMainPage();
+            } else {
+                alert('Invalid credentials. Too many attempts will result in IP ban.');
+                triggerBan();
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            alert('Registration requires valid invitation code. Contact existing members for access.');
+        }
+
+        function triggerBan() {
+            showBanPage();
+        }
+
+        function bypassBan() {
+            alert('Manual review request submitted. Security team will review your case within 24 hours.');
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showMainPage();
+        });
+
+        // Matrix rain effect
+        const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const matrixRain = document.querySelector('.matrix-rain');
+        
+        if (matrixRain) {
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement('span');
+                span.style.left = `${Math.random() * 100}%`;
+                span.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                span.style.animationDelay = `${Math.random() * 2}s`;
+                span.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                matrixRain.appendChild(span);
+            }
+        }
+    </script>
 </body>
 </html>
-
