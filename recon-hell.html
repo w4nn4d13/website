@@ -1,161 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>CTF Recon Challenge</title>
+    <meta charset="UTF-8">
+    <title>Recon Hell v3.0: The Infinite Header</title>
 
-<!-- GENERATORS -->
-<meta name="generator" content="WordPress 6.5">
-<meta name="generator" content="Drupal 10">
-<meta name="generator" content="Joomla 4">
-<meta name="generator" content="Shopify">
-<meta name="generator" content="Wix">
-<meta name="generator" content="Squarespace">
-<meta name="generator" content="Ghost">
+    <meta name="generator" content="Magento 2.4.7">
+    <meta name="generator" content="BigCommerce">
+    <meta name="generator" content="Salesforce Commerce Cloud">
+    <meta name="generator" content="SAP Commerce Cloud">
+    <meta name="generator" content="Oracle NetSuite">
+    <meta name="generator" content="PrestaShop 8.0">
+    <meta name="generator" content="Zen Cart">
+    <meta name="generator" content="CubeCart">
+    <meta name="generator" content="X-Cart">
+    <meta name="generator" content="CS-Cart">
+    <meta name="generator" content="nopCommerce">
+    <meta name="generator" content="Volusion">
+    <meta name="generator" content="3dcart">
+    <meta name="generator" content="Ecwid">
+    <meta name="generator" content="Big Cartel">
+    <meta name="generator" content="Miva Merchant">
+    <meta name="generator" content="AmeriCommerce">
+    <meta name="generator" content="CoreCommerce">
+    <meta name="generator" content="Fortune3">
+    <meta name="generator" content="PinnacleCart">
+    <meta name="generator" content="ShopSite">
+    <meta name="generator" content="Quick eSelling">
+    <meta name="generator" content="LemonStand">
+    <meta name="generator" content="Selz">
+    <meta name="generator" content="Gumroad">
+    <meta name="generator" content="SendOwl">
+    <meta name="generator" content="FetchApp">
+    <meta name="generator" content="DPD (Digital Product Delivery)">
+    <meta name="generator" content="E-junkie">
+    <meta name="generator" content="Payloadz">
 
-<!-- FRAMEWORK HINTS -->
-<script>
-window.jQuery = {};
-window.angular = {};
-window.React = {};
-window.Vue = {};
-window.Svelte = {};
-window.Next = {};
-window.Nuxt = {};
-window.Ember = {};
-window.Backbone = {};
-window.Alpine = {};
-window.Laravel = {};
-window.Django = {};
-window.Flask = {};
-window.Express = {};
-window.FastAPI = {};
-window.Spring = {};
-window.AspNetCore = {};
-window.Rails = {};
-window.CodeIgniter = {};
-window.Hugo = {};
-window.Gatsby = {};
-window.Strapi = {};
-window.Firebase = {};
-window.Supabase = {};
-window.Hasura = {};
-window.GraphQL = {};
-window.SocketIO = {};
-window.Kubernetes = {};
-window.Docker = {};
-window.Redis = {};
-window.MongoDB = {};
-window.MySQL = {};
-window.PostgreSQL = {};
-window.Elasticsearch = {};
-window.Nginx = {};
-window.Apache = {};
-window.Cloudflare = {};
-window.Vercel = {};
-window.Netlify = {};
-window.Heroku = {};
-window.DigitalOcean = {};
-window.AWS = {};
-window.AWSEC2 = {};
-window.Azure = {};
-window.GCP = {};
-window.Linode = {};
-window.OpenStack = {};
-window.PaypalAPI = {};
-window.StripeAPI = {};
-window.RazorpayAPI = {};
-window.TwilioAPI = {};
-window.SendGrid = {};
-window.Mailgun = {};
-window.Cloudinary = {};
-window.Sentry = {};
-window.Datadog = {};
-window.NewRelic = {};
-window.SlackAPI = {};
-window.GitHubAPI = {};
-window.GitLabCI = {};
-window.Jenkins = {};
-window.TravisCI = {};
-window.CircleCI = {};
-window.Prometheus = {};
-window.Grafana = {};
-window.Kafka = {};
-window.RabbitMQ = {};
-window.OpenAI = {};
-window.HuggingFace = {};
-window.TensorFlow = {};
-window.PyTorch = {};
-window.Keras = {};
-window.Blockchain = {};
-window.Ethereum = {};
-window.IPFS = {};
-window.MetaMask = {};
-window.Web3 = {};
-window.Solana = {};
-window.Polkadot = {};
-window.SEO = {};
-window.GoogleAnalytics = {};
-window.GoogleTagManager = {};
-window.FacebookPixel = {};
-window.LinkedInInsight = {};
-window.Hotjar = {};
-window.Matomo = {};
-window.Snowflake = {};
-window.BigQuery = {};
-window.Redshift = {};
-window.Athena = {};
-window.CDN = {};
-window.EdgeWorker = {};
-window.Serverless = {};
-window.Lambda = {};
-window.APIv1 = {};
-window.APIv2 = {};
-window.InternalAPI = {};
-window.AdminPanel = {};
-window.StagingEnv = {};
-window.DevEnv = {};
-window.TestEnv = {};
-</script>
+    <meta name="apple-mobile-web-app-title" content="Internal Admin">
+    <meta name="application-name" content="CTF_Infra_Monitor">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, notranslate, noimageindex">
 
-<!-- FAKE ENDPOINT HINTS -->
-<link rel="api" href="/api/v1/users">
-<link rel="api" href="/api/v1/admin">
-<link rel="api" href="/internal/graphql">
-<link rel="api" href="/auth/oauth2">
-<link rel="api" href="/aws/ec2/meta-data">
-<link rel="api" href="/azure/instance/metadata">
-<link rel="api" href="/digitalocean/droplet">
-<link rel="api" href="/paypal/ipn">
-<link rel="api" href="/stripe/webhook">
-<link rel="api" href="/k8s/dashboard">
+    <meta name="product-id" content="SKU-99283-A">
+    <meta name="product-id" content="SKU-99283-B">
+    <meta name="product-id" content="SKU-99283-C">
+    <meta name="product-id" content="SKU-99283-D">
+    <meta name="product-id" content="SKU-10293-X">
+    <meta name="product-id" content="SKU-10293-Y">
+    <meta name="product-id" content="SKU-10293-Z">
+    <meta name="product-id" content="SKU-55443-P">
+    <meta name="product-id" content="SKU-55443-Q">
+    <meta name="product-id" content="SKU-55443-R">
+    <link rel="dns-prefetch" href="//internal-db.ec2.aws.amazon.com">
+    <link rel="dns-prefetch" href="//s3-us-west-2.amazonaws.com/recon-private-data">
+    <link rel="dns-prefetch" href="//vault.hashicorp.internal">
+    <link rel="dns-prefetch" href="//kubernetes-master.cluster.local">
+    <link rel="dns-prefetch" href="//metrics.datadoghq.com">
+    <link rel="dns-prefetch" href="//logs.collector.splunk.internal">
+    <link rel="preconnect" href="https://api.stripe.com">
+    <link rel="preconnect" href="https://api.braintreegateway.com">
+    <link rel="preconnect" href="https://checkout.paypal.com">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://google-analytics.com">
 
-<!-- COOKIES -->
-<script>
-document.cookie="PHPSESSID=abc123";
-document.cookie="JSESSIONID=xyz789";
-document.cookie="_ga=GA1.2.123456";
-document.cookie="csrftoken=token123";
-document.cookie="laravel_session=session321";
-</script>
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Global Recon Corp",
+        "url": "http://10.0.0.1/hidden",
+        "logo": "http://1.1.1.1/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-800-555-0199",
+          "contactType": "customer service"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Recon Portal",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://internal.recon.ctf/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+      /* ... 80 more schema objects go here ... */
+    ]
+    </script>
 
+    <script>
+        const bucketList = ["recon-backups", "prod-secrets", "dev-logs", "user-data-dump"];
+        const internalNodes = ["192.168.1.10", "192.168.1.11", "172.16.0.5", "10.10.10.50"];
+        
+        // Populate cookies with garbage to hide the session
+        for (let i = 0; i < 250; i++) {
+            document.cookie = `RECON_DATA_${i}=${btoa(Math.random().toString())}; Max-Age=3600; path=/`;
+        }
+    </script>
 </head>
-
 <body>
-<h1>Welcome to Recon Hell</h1>
+    <h1>hshbs</h1>
+    <p>man.</p>
 
-<!-- Hidden comment clues -->
-<!-- TODO: remove aws_access_key before production -->
-<!-- internal staging server: 10.0.0.5 -->
-<!-- database backup: /backup.sql -->
-<!-- s3 bucket: recon-ctf-bucket -->
-<!-- ec2 instance id: i-0f9a7c12345 -->
-<!-- azure tenant id: 9a7c-ctf-tenant -->
-<!-- digitalocean droplet id: 2938475 -->
+    <div id="catalog" style="opacity: 0.01;">
+        <div class="item" data-sku="RECON-001" data-price="99.99">ajdb</div>
+        <div class="item" data-sku="RECON-002" data-price="45.50">dshbd</div>
+        <div class="item" data-sku="RECON-003" data-price="12.00">ajbsahbs</div>
+        </div>
 
-<p>Nothing to see here 👀</p>
+    <script>
+        // This generates "activity" in the console to distract users
+        setInterval(() => {
+            const noise = ["Ping...","Auth heartbeat...","Syncing DB...","Check S3..."];
+            const randomMsg = noise[Math.floor(Math.random() * noise.length)];
+            const fakeHash = Array.from({length:32},()=>Math.floor(Math.random()*16).toString(16)).join('');
+            console.log(`[${new Date().toISOString()}] ${randomMsg} ID: ${fakeHash}`);
+        }, 5000);
+    </script>
 
-<!-- REAL FLAG -->
-<!-- ctf{recon_stack_detection_master_2026} -->
-
-</body>
+    </body>
 </html>
