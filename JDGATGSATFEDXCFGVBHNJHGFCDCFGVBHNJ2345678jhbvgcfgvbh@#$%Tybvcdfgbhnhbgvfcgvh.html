@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTF Recon Challenge - Advanced Stack Detection</title>
+
+<!-- ===== GENERATOR METADATA ===== -->
+<meta name="generator" content="WordPress 6.5.2">
+<meta name="generator" content="Drupal 10.1.5">
+<meta name="generator" content="Joomla 4.3.1">
+<meta name="generator" content="Shopify Plus">
+<meta name="generator" content="Wix Studio">
+<meta name="generator" content="Squarespace 7.1">
+<meta name="generator" content="Ghost 5.51.0">
+<meta name="generator" content="Statamic 5.0">
+<meta name="generator" content="Craft CMS 4.5">
+<meta name="generator" content="Strapi 4.15.5">
+
+<!-- ===== FRONTEND FRAMEWORKS ===== -->
+<meta name="framework" content="React 18.2.0">
+<meta name="framework" content="Vue.js 3.3.4">
+<meta name="framework" content="Angular 16.2.0">
+<meta name="framework" content="Svelte 4.1.2">
+<meta name="framework" content="Next.js 14.0.3">
+<meta name="framework" content="Nuxt 3.8.1">
+<meta name="framework" content="Ember.js 5.1.0">
+<meta name="framework" content="Backbone.js 1.4.1">
+<meta name="framework" content="Alpine.js 3.13.3">
+<meta name="framework" content="htmx 1.9.10">
+<meta name="framework" content="Preact 10.19.2">
+<meta name="framework" content="Solid.js 1.7.11">
+<meta name="framework" content="Astro 3.4.4">
+<meta name="framework" content="Remix 2.4.1">
+
+<!-- ===== BACKEND FRAMEWORKS ===== -->
+<meta name="backend" content="Laravel 10.38.2">
+<meta name="backend" content="Django 4.2.7">
+<meta name="backend" content="Flask 3.0.0">
+<meta name="backend" content="Express.js 4.18.2">
+<meta name="backend" content="FastAPI 0.109.0">
+<meta name="backend" content="Spring Boot 3.2.1">
+<meta name="backend" content="ASP.NET Core 8.0.1">
+<meta name="backend" content="Rails 7.1.1">
+<meta name="backend" content="CodeIgniter 4.4.4">
+<meta name="backend" content="Symfony 6.4.0">
+<meta name="backend" content="Pyramid 2.0.2">
+<meta name="backend" content="Tornado 6.3.3">
+<meta name="backend" content="Koa 2.14.2">
+<meta name="backend" content="NestJS 10.2.10">
+<meta name="backend" content="Hapi 21.3.7">
+<meta name="backend" content="Fastify 4.25.1">
+
+<!-- ===== DATABASE SYSTEMS ===== -->
+<meta name="database" content="PostgreSQL 16.1">
+<meta name="database" content="MySQL 8.2.0">
+<meta name="database" content="MongoDB 7.0.2">
+<meta name="database" content="Redis 7.2.3">
+<meta name="database" content="Elasticsearch 8.11.0">
+<meta name="database" content="DynamoDB">
+<meta name="database" content="Cassandra 4.1.3">
+<meta name="database" content="Oracle Database 23c">
+<meta name="database" content="SQL Server 2022">
+<meta name="database" content="MariaDB 11.2.2">
+<meta name="database" content="CouchDB 3.3.1">
+<meta name="database" content="Firebase Realtime DB">
+<meta name="database" content="Firestore">
+<meta name="database" content="Supabase PostgreSQL">
+<meta name="database" content="ArangoDB 3.11.2">
+
+<!-- ===== CONTAINERIZATION & ORCHESTRATION ===== -->
+<meta name="infra" content="Docker 24.0.6">
+<meta name="infra" content="Kubernetes 1.28.4">
+<meta name="infra" content="Docker Compose 2.23.3">
+<meta name="infra" content="Podman 4.7.1">
+<meta name="infra" content="containerd 1.7.8">
+<meta name="infra" content="OpenShift 4.14">
+<meta name="infra" content="Nomad 1.7.0">
+<meta name="infra" content="ECS">
+<meta name="infra" content="EKS">
+<meta name="infra" content="GKE">
+<meta name="infra" content="AKS">
+<meta name="infra" content="Rancher 2.7.8">
+
+<!-- ===== CLOUD PLATFORMS ===== -->
+<meta name="cloud" content="AWS">
+<meta name="cloud" content="Amazon EC2">
+<meta name="cloud" content="Amazon S3">
+<meta name="cloud" content="Amazon RDS">
+<meta name="cloud" content="Amazon Lambda">
+<meta name="cloud" content="AWS CloudFront">
+<meta name="cloud" content="AWS AppSync">
+<meta name="cloud" content="AWS API Gateway">
+<meta name="cloud" content="AWS Cognito">
+<meta name="cloud" content="Google Cloud Platform">
+<meta name="cloud" content="Google Compute Engine">
+<meta name="cloud" content="Google Cloud Storage">
+<meta name="cloud" content="Google Cloud SQL">
+<meta name="cloud" content="Google Cloud Run">
+<meta name="cloud" content="Google Cloud Functions">
+<meta name="cloud" content="Google Vertex AI">
+<meta name="cloud" content="Microsoft Azure">
+<meta name="cloud" content="Azure Virtual Machines">
+<meta name="cloud" content="Azure App Service">
+<meta name="cloud" content="Azure SQL Database">
+<meta name="cloud" content="Azure Functions">
+<meta name="cloud" content="Azure Container Registry">
+<meta name="cloud" content="DigitalOcean">
+<meta name="cloud" content="DigitalOcean Droplets">
+<meta name="cloud" content="DigitalOcean Spaces">
+<meta name="cloud" content="Heroku">
+<meta name="cloud" content="Linode">
+<meta name="cloud" content="Vultr">
+<meta name="cloud" content="IBM Cloud">
+<meta name="cloud" content="Oracle Cloud">
+
+<!-- ===== DEPLOYMENT & HOSTING ===== -->
+<meta name="deployment" content="Vercel">
+<meta name="deployment" content="Netlify">
+<meta name="deployment" content="GitHub Pages">
+<meta name="deployment" content="GitLab Pages">
+<meta name="deployment" content="CloudFlare Pages">
+<meta name="deployment" content="Render">
+<meta name="deployment" content="Railway">
+<meta name="deployment" content="Fly.io">
+<meta name="deployment" content="PaaS">
+<meta name="deployment" content="IaaS">
+
+<!-- ===== CDN & EDGE ===== -->
+<meta name="cdn" content="Cloudflare CDN">
+<meta name="cdn" content="AWS CloudFront">
+<meta name="cdn" content="Akamai">
+<meta name="cdn" content="Fastly">
+<meta name="cdn" content="CloudFlare Workers">
+<meta name="cdn" content="AWS Lambda@Edge">
+<meta name="cdn" content="Azure Edge Zones">
+<meta name="cdn" content="Cloudflare Pages">
+
+<!-- ===== PAYMENT GATEWAYS ===== -->
+<meta name="payment" content="Stripe">
+<meta name="payment" content="PayPal">
+<meta name="payment" content="Razorpay">
+<meta name="payment" content="Square">
+<meta name="payment" content="Shopify Payments">
+<meta name="payment" content="Google Pay">
+<meta name="payment" content="Apple Pay">
+<meta name="payment" content="Braintree">
+<meta name="payment" content="Authorize.net">
+<meta name="payment" content="2Checkout">
+<meta name="payment" content="Klarna">
+
+<!-- ===== COMMUNICATION APIs ===== -->
+<meta name="api-service" content="Twilio">
+<meta name="api-service" content="SendGrid">
+<meta name="api-service" content="Mailgun">
+<meta name="api-service" content="Amazon SES">
+<meta name="api-service" content="Firebase Cloud Messaging">
+<meta name="api-service" content="OneSignal">
+<meta name="api-service" content="PushBullet">
+<meta name="api-service" content="Vonage">
+
+<!-- ===== MEDIA & STORAGE ===== -->
+<meta name="media" content="Cloudinary">
+<meta name="media" content="imgix">
+<meta name="media" content="Bunny CDN">
+<meta name="media" content="AWS S3">
+<meta name="media" content="Google Cloud Storage">
+<meta name="media" content="Azure Blob Storage">
+<meta name="media" content="MinIO">
+
+<!-- ===== MONITORING & LOGGING ===== -->
+<meta name="monitoring" content="Sentry">
+<meta name="monitoring" content="Datadog">
+<meta name="monitoring" content="New Relic">
+<meta name="monitoring" content="ELK Stack">
+<meta name="monitoring" content="Prometheus">
+<meta name="monitoring" content="Grafana">
+<meta name="monitoring" content="Splunk">
+<meta name="monitoring" content="Sumo Logic">
+<meta name="monitoring" content="LogRocket">
+<meta name="monitoring" content="Rollbar">
+<meta name="monitoring" content="Bugsnag">
+
+<!-- ===== CI/CD SYSTEMS ===== -->
+<meta name="ci-cd" content="GitHub Actions">
+<meta name="ci-cd" content="GitLab CI/CD">
+<meta name="ci-cd" content="Jenkins">
+<meta name="ci-cd" content="Travis CI">
+<meta name="ci-cd" content="CircleCI">
+<meta name="ci-cd" content="GitLab Runner">
+<meta name="ci-cd" content="Drone">
+<meta name="ci-cd" content="ArgoCD">
+<meta name="ci-cd" content="AWS CodePipeline">
+<meta name="ci-cd" content="Azure DevOps">
+
+<!-- ===== TESTING & QA ===== -->
+<meta name="testing" content="Jest">
+<meta name="testing" content="Mocha">
+<meta name="testing" content="Cypress">
+<meta name="testing" content="Selenium">
+<meta name="testing" content="Playwright">
+<meta name="testing" content="Vitest">
+<meta name="testing" content="Pytest">
+<meta name="testing" content="unittest">
+
+<!-- ===== API SPECIFICATIONS ===== -->
+<meta name="api-type" content="REST">
+<meta name="api-type" content="GraphQL">
+<meta name="api-type" content="WebSocket">
+<meta name="api-type" content="gRPC">
+<meta name="api-type" content="Server-Sent Events">
+<meta name="api-type" content="Socket.io">
+<meta name="api-type" content="MQTT">
+<meta name="api-type" content="AMQP">
+
+<!-- ===== AI/ML SERVICES ===== -->
+<meta name="ai-service" content="OpenAI">
+<meta name="ai-service" content="Anthropic Claude">
+<meta name="ai-service" content="Google Gemini">
+<meta name="ai-service" content="Hugging Face">
+<meta name="ai-service" content="TensorFlow">
+<meta name="ai-service" content="PyTorch">
+<meta name="ai-service" content="scikit-learn">
+<meta name="ai-service" content="XGBoost">
+<meta name="ai-service" content="AWS SageMaker">
+<meta name="ai-service" content="Google Vertex AI">
+<meta name="ai-service" content="Cohere">
+<meta name="ai-service" content="Midjourney API">
+<meta name="ai-service" content="Stable Diffusion">
+
+<!-- ===== BLOCKCHAIN & WEB3 ===== -->
+<meta name="blockchain" content="Ethereum">
+<meta name="blockchain" content="Bitcoin">
+<meta name="blockchain" content="Polygon">
+<meta name="blockchain" content="Solana">
+<meta name="blockchain" content="Cosmos">
+<meta name="blockchain" content="Polkadot">
+<meta name="blockchain" content="Web3.js">
+<meta name="blockchain" content="Ethers.js">
+<meta name="blockchain" content="Truffle">
+<meta name="blockchain" content="Hardhat">
+<meta name="blockchain" content="Foundry">
+<meta name="blockchain" content="IPFS">
+<meta name="blockchain" content="Arweave">
+<meta name="blockchain" content="MetaMask">
+<meta name="blockchain" content="WalletConnect">
+
+<!-- ===== ANALYTICS & TRACKING ===== -->
+<meta name="analytics" content="Google Analytics">
+<meta name="analytics" content="Google Tag Manager">
+<meta name="analytics" content="Adobe Analytics">
+<meta name="analytics" content="Mixpanel">
+<meta name="analytics" content="Amplitude">
+<meta name="analytics" content="Hotjar">
+<meta name="analytics" content="Segment">
+<meta name="analytics" content="Matomo">
+<meta name="analytics" content="Facebook Pixel">
+<meta name="analytics" content="LinkedIn Insight">
+<meta name="analytics" content="Heap">
+<meta name="analytics" content="Full Story">
+
+<!-- ===== SECURITY & AUTH ===== -->
+<meta name="security" content="Auth0">
+<meta name="security" content="Okta">
+<meta name="security" content="Firebase Authentication">
+<meta name="security" content="AWS Cognito">
+<meta name="security" content="OAuth 2.0">
+<meta name="security" content="OpenID Connect">
+<meta name="security" content="SAML 2.0">
+<meta name="security" content="JWT">
+<meta name="security" content="Vault">
+<meta name="security" content="Let's Encrypt">
+
+<!-- ===== WEBHOOKS & MESSAGE QUEUES ===== -->
+<meta name="messaging" content="RabbitMQ">
+<meta name="messaging" content="Kafka">
+<meta name="messaging" content="Apache Pulsar">
+<meta name="messaging" content="Redis Pub/Sub">
+<meta name="messaging" content="AWS SQS">
+<meta name="messaging" content="AWS SNS">
+<meta name="messaging" content="Google Pub/Sub">
+<meta name="messaging" content="Azure Service Bus">
+<meta name="messaging" content="ActiveMQ">
+
+<!-- ===== DATA WAREHOUSING ===== -->
+<meta name="data-warehouse" content="Snowflake">
+<meta name="data-warehouse" content="BigQuery">
+<meta name="data-warehouse" content="Amazon Redshift">
+<meta name="data-warehouse" content="Apache Spark">
+<meta name="data-warehouse" content="Presto">
+<meta name="data-warehouse" content="Trino">
+<meta name="data-warehouse" content="Apache Hive">
+<meta name="data-warehouse" content="Apache Druid">
+
+<!-- ===== VERSION CONTROL ===== -->
+<meta name="vcs" content="Git">
+<meta name="vcs" content="GitHub">
+<meta name="vcs" content="GitLab">
+<meta name="vcs" content="Bitbucket">
+<meta name="vcs" content="Gitea">
+<meta name="vcs" content="Gogs">
+<meta name="vcs" content="Gitbucket">
+
+<!-- ===== ADDITIONAL TOOLS & SERVICES ===== -->
+<meta name="tools" content="Docker">
+<meta name="tools" content="Terraform">
+<meta name="tools" content="Ansible">
+<meta name="tools" content="Chef">
+<meta name="tools" content="Puppet">
+<meta name="tools" content="SaltStack">
+<meta name="tools" content="Vagrant">
+<meta name="tools" content="npm">
+<meta name="tools" content="yarn">
+<meta name="tools" content="pnpm">
+<meta name="tools" content="Maven">
+<meta name="tools" content="Gradle">
+<meta name="tools" content="pip">
+<meta name="tools" content="Poetry">
+<meta name="tools" content="Composer">
+<meta name="tools" content="Bundler">
+<meta name="tools" content="Cargo">
+<meta name="tools" content="Go modules">
+
+<!-- ===== FRAMEWORK DETECTION SCRIPT ===== -->
+<script>
+// Frontend Frameworks
+window.jQuery = {};
+window.React = {};
+window.ReactDOM = {};
+window.Vue = {};
+window.Angular = {};
+window.angular = {};
+window.Svelte = {};
+window.Next = {};
+window.Nuxt = {};
+window.Ember = {};
+window.Backbone = {};
+window.Alpine = {};
+window.htmx = {};
+window.Preact = {};
+window.Solid = {};
+window.Astro = {};
+window.Remix = {};
+
+// Backend Frameworks
+window.Laravel = {};
+window.Django = {};
+window.Flask = {};
+window.Express = {};
+window.FastAPI = {};
+window.Spring = {};
+window.AspNetCore = {};
+window.Rails = {};
+window.CodeIgniter = {};
+window.Symfony = {};
+window.Pyramid = {};
+window.Tornado = {};
+window.Koa = {};
+window.NestJS = {};
+window.Hapi = {};
+window.Fastify = {};
+
+// Databases
+window.PostgreSQL = {};
+window.MySQL = {};
+window.MongoDB = {};
+window.Redis = {};
+window.Elasticsearch = {};
+window.DynamoDB = {};
+window.Cassandra = {};
+window.CouchDB = {};
+window.Firebase = {};
+window.Supabase = {};
+window.ArangoDB = {};
+
+// Cloud & Infrastructure
+window.AWS = {};
+window.AWSEC2 = {};
+window.S3 = {};
+window.RDS = {};
+window.Lambda = {};
+window.GCP = {};
+window.GoogleCloud = {};
+window.Azure = {};
+window.DigitalOcean = {};
+window.Heroku = {};
+window.Linode = {};
+window.Vultr = {};
+window.IBM = {};
+window.Oracle = {};
+
+// Containerization
+window.Docker = {};
+window.Kubernetes = {};
+window.K8s = {};
+window.DockerCompose = {};
+window.Podman = {};
+window.OpenShift = {};
+window.ECS = {};
+window.EKS = {};
+window.GKE = {};
+window.AKS = {};
+
+// CDN & Caching
+window.Cloudflare = {};
+window.CloudflareCDN = {};
+window.CloudflareWorkers = {};
+window.Akamai = {};
+window.Fastly = {};
+window.Varnish = {};
+window.Memcached = {};
+
+// Payment & Commerce
+window.Stripe = {};
+window.StripeAPI = {};
+window.PayPal = {};
+window.PaypalAPI = {};
+window.Razorpay = {};
+window.Square = {};
+window.Shopify = {};
+
+// APIs & Services
+window.Twilio = {};
+window.SendGrid = {};
+window.Mailgun = {};
+window.Sentry = {};
+window.Datadog = {};
+window.NewRelic = {};
+window.PagerDuty = {};
+
+// Authentication
+window.Auth0 = {};
+window.Okta = {};
+window.OAuth2 = {};
+window.JWT = {};
+window.OIDC = {};
+window.SAML = {};
+
+// Message Queues
+window.RabbitMQ = {};
+window.Kafka = {};
+window.Redis = {};
+window.ActiveMQ = {};
+window.NATS = {};
+
+// AI/ML
+window.OpenAI = {};
+window.HuggingFace = {};
+window.TensorFlow = {};
+window.PyTorch = {};
+window.Keras = {};
+window.Scikit = {};
+
+// Blockchain
+window.Web3 = {};
+window.Ethers = {};
+window.MetaMask = {};
+window.Ethereum = {};
+window.Solana = {};
+window.IPFS = {};
+
+// Analytics
+window.GoogleAnalytics = {};
+window.GA4 = {};
+window.GTM = {};
+window.Mixpanel = {};
+window.Amplitude = {};
+window.Hotjar = {};
+
+// Monitoring
+window.Prometheus = {};
+window.Grafana = {};
+window.ELK = {};
+window.Splunk = {};
+
+// CI/CD
+window.GitHub = {};
+window.GitLab = {};
+window.Jenkins = {};
+window.Travis = {};
+window.CircleCI = {};
+window.GitHubActions = {};
+
+// Development Tools
+window.npm = {};
+window.yarn = {};
+window.pnpm = {};
+window.webpack = {};
+window.Vite = {};
+window.Rollup = {};
+window.Esbuild = {};
+window.Turbopack = {};
+</script>
+
+<!-- ===== API ENDPOINT HINTS ===== -->
+<link rel="api" href="/api/v1/users">
+<link rel="api" href="/api/v1/products">
+<link rel="api" href="/api/v1/orders">
+<link rel="api" href="/api/v1/admin">
+<link rel="api" href="/api/v2/admin">
+<link rel="api" href="/api/v2/users">
+<link rel="api" href="/api/v2/auth">
+<link rel="api" href="/api/v3/internal">
+<link rel="api" href="/internal/graphql">
+<link rel="api" href="/internal/rest">
+<link rel="api" href="/graphql">
+<link rel="api" href="/graphql/admin">
+<link rel="api" href="/auth/oauth2">
+<link rel="api" href="/auth/login">
+<link rel="api" href="/auth/register">
+<link rel="api" href="/auth/refresh">
+<link rel="api" href="/auth/logout">
+<link rel="api" href="/api/auth/callback">
+<link rel="api" href="/api/webhook">
+<link rel="api" href="/api/webhook/stripe">
+<link rel="api" href="/api/webhook/github">
+<link rel="api" href="/api/health">
+<link rel="api" href="/api/status">
+<link rel="api" href="/api/config">
+<link rel="api" href="/api/settings">
+<link rel="api" href="/api/system">
+<link rel="api" href="/api/debug">
+<link rel="api" href="/api/metrics">
+<link rel="api" href="/api/logs">
+<link rel="api" href="/api/search">
+<link rel="api" href="/api/suggest">
+<link rel="api" href="/api/autocomplete">
+<link rel="api" href="/api/validate">
+<link rel="api" href="/api/verify">
+<link rel="api" href="/api/upload">
+<link rel="api" href="/api/download">
+<link rel="api" href="/api/export">
+<link rel="api" href="/api/import">
+<link rel="api" href="/aws/ec2/meta-data">
+<link rel="api" href="/aws/metadata">
+<link rel="api" href="/169.254.169.254/latest">
+<link rel="api" href="/azure/instance/metadata">
+<link rel="api" href="/azure/metadata">
+<link rel="api" href="/digitalocean/droplet">
+<link rel="api" href="/digitalocean/metadata">
+<link rel="api" href="/gcp/compute/metadata">
+<link rel="api" href="/k8s/dashboard">
+<link rel="api" href="/k8s/api">
+<link rel="api" href="/.well-known/openid-configuration">
+<link rel="api" href="/.well-known/jwks.json">
+<link rel="api" href="/.well-known/oauth-authorization-server">
+
+<!-- ===== HIDDEN ENVIRONMENT HINTS ===== -->
+<link rel="environment" href="/env">
+<link rel="environment" href="/config">
+<link rel="environment" href="/.env.local">
+<link rel="environment" href="/.env.production">
+<link rel="environment" href="/.env.staging">
+<link rel="environment" href"/.env.development">
+<link rel="environment" href="/config.json">
+<link rel="environment" href="/settings.json">
+<link rel="environment" href="/secrets.json">
+
+<!-- ===== COOKIES & SESSION DATA ===== -->
+<script>
+document.cookie="PHPSESSID=abc123def456";
+document.cookie="JSESSIONID=xyz789abc123";
+document.cookie="SESSIONID=session_token_123";
+document.cookie="laravel_session=laravel_session_token";
+document.cookie="RAILS_SESSION=rails_session_token";
+document.cookie="_ga=GA1.2.123456789.1234567890";
+document.cookie="_gid=GA1.2.987654321.0987654321";
+document.cookie="__utma=123456789.123456789.1234567890.1234567890.1234567890.1";
+document.cookie="__utmz=123456789.1234567890.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)";
+document.cookie="csrftoken=token123token456";
+document.cookie="_csrf=csrf_token_value";
+document.cookie="__RequestVerificationToken=token_value";
+document.cookie="stripe_session=stripe_session_token";
+document.cookie="auth_token=auth_token_value";
+document.cookie="jwt=jwt_token_value";
+document.cookie="access_token=access_token_value";
+document.cookie="refresh_token=refresh_token_value";
+document.cookie="user_id=user123";
+document.cookie="username=admin";
+document.cookie="admin=true";
+document.cookie="role=administrator";
+document.cookie="permissions=full";
+document.cookie="workspace=production";
+document.cookie="environment=staging";
+document.cookie="database_id=db_123456";
+document.cookie="api_version=v2";
+document.cookie="feature_flags=feature1,feature2,feature3";
+</script>
+
+<!-- ===== HIDDEN COMMENTS WITH CLUES ===== -->
+<!-- TODO: remove aws_access_key=AKIA2E7X8K9L0M1N2O3P before production -->
+<!-- TODO: remove aws_secret_access_key=AbCdEfGhIjKlMnOpQrStUvWxYz before production -->
+<!-- TODO: remove database_password=ProductionDB#2024 before production -->
+<!-- TODO: remove api_key=sk_live_abc123def456 before production -->
+<!-- TODO: remove stripe_webhook_secret=whsec_test_abc123 before production -->
+<!-- WARNING: internal staging server: 10.0.0.5 (DO NOT USE IN PROD) -->
+<!-- WARNING: internal dev server: 10.0.0.10 -->
+<!-- WARNING: internal test server: 10.0.0.15 -->
+<!-- NOTE: database backup location: /backup/mysql_backup_2024.sql -->
+<!-- NOTE: full database dump: /backup/dump.sql -->
+<!-- NOTE: s3 bucket: recon-ctf-bucket -->
+<!-- NOTE: s3 bucket: internal-assets-bucket -->
+<!-- NOTE: s3 bucket: staging-backup-bucket -->
+<!-- NOTE: s3 bucket: admin-files-bucket -->
+<!-- NOTE: ec2 instance id: i-0f9a7c12345 -->
+<!-- NOTE: ec2 instance id: i-0a1b2c3d4e5f6g7h8 -->
+<!-- NOTE: ec2 security group: sg-0123456789abcdef -->
+<!-- NOTE: ec2 key pair: ctf-challenge-key -->
+<!-- NOTE: azure tenant id: 9a7c-ctf-tenant -->
+<!-- NOTE: azure subscription: 12345678-1234-1234-1234-123456789012 -->
+<!-- NOTE: azure resource group: ctf-resources -->
+<!-- NOTE: digitalocean droplet id: 2938475 -->
+<!-- NOTE: digitalocean droplet id: 3847291 -->
+<!-- NOTE: digitalocean app id: abc123def456 -->
+<!-- NOTE: digitalocean space: ctf-space -->
+<!-- NOTE: gcp project id: ctf-recon-challenge -->
+<!-- NOTE: gcp service account: ctf-service@ctf-recon.iam.gserviceaccount.com -->
+<!-- NOTE: github organization: ctf-challenge-org -->
+<!-- NOTE: github private repo: https://github.com/ctf-challenge-org/internal-tools -->
+<!-- NOTE: docker registry: registry.ctf.local -->
+<!-- NOTE: docker image: ctf-challenge:1.2.3 -->
+<!-- NOTE: kubernetes namespace: ctf-production -->
+<!-- NOTE: kubernetes secret: db-credentials -->
+<!-- NOTE: redis cluster: redis.internal:6379 -->
+<!-- NOTE: mongodb connection: mongodb://db.internal:27017/ctf -->
+<!-- NOTE: elasticsearch endpoint: https://elastic.internal:9200 -->
+<!-- NOTE: kafka broker: kafka.internal:9092 -->
+<!-- NOTE: rabbitmq host: rabbitmq.internal:5672 -->
+<!-- NOTE: postgres host: postgres.internal:5432 -->
+<!-- NOTE: mysql host: mysql.internal:3306 -->
+<!-- CRITICAL: sentry dsn: https://abc123def456@sentry.io/1234567 -->
+<!-- CRITICAL: datadog api key: dd_api_key_abc123 -->
+<!-- CRITICAL: slack webhook: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXX -->
+<!-- CRITICAL: github oauth client_id: 1a2b3c4d5e6f7g8h -->
+<!-- CRITICAL: github oauth client_secret: abc123def456ghi789jkl012 -->
+<!-- CRITICAL: stripe public key: pk_live_51IW9YEHjAzBGtq7Y -->
+<!-- CRITICAL: stripe secret key: sk_live_4eC39HqLyjWDarhtT663 -->
+<!-- CRITICAL: paypal client_id: AbCdEfGhIjKlMnOpQrStUvWxYz -->
+<!-- CRITICAL: twilio account_sid: ACxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- CRITICAL: twilio auth_token: xxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- CRITICAL: sendgrid api_key: SG.abc123def456ghi789jkl012 -->
+<!-- CRITICAL: mailgun api_key: key-abc123def456ghi789jkl012 -->
+<!-- CRITICAL: cloudinary cloud_name: ctf_cloud -->
+<!-- CRITICAL: cloudinary api_key: 123456789123456 -->
+<!-- CRITICAL: openai api_key: sk-abc123def456ghi789jkl012 -->
+<!-- CRITICAL: jwt secret: your-256-bit-secret-key-for-jwt-encoding -->
+<!-- CRITICAL: database master password: MasterDB!Pass@2024#Secure -->
+<!-- SECURITY_ISSUE: api rate limiting disabled in staging -->
+<!-- SECURITY_ISSUE: cors allows * origin -->
+<!-- SECURITY_ISSUE: authentication bypass in /api/v1/admin -->
+<!-- SECURITY_ISSUE: sql injection possible in search endpoint -->
+<!-- SECURITY_ISSUE: xxe vulnerability in xml parser -->
+<!-- FEATURE: admin panel at /admin/login with default creds: admin/admin -->
+<!-- FEATURE: debug mode enabled in staging environment -->
+<!-- FEATURE: verbose error messages enabled -->
+<!-- FEATURE: stack traces exposed in error pages -->
+<!-- FEATURE: query execution times logged -->
+<!-- DEPRECATED: old api endpoint /api/v0 still active -->
+<!-- DEPRECATED: legacy authentication method still supported -->
+<!-- DEPRECATED: session cookies unencrypted -->
+
+<!-- ===== MORE HIDDEN HINTS ===== -->
+<!-- deploy branch: main -->
+<!-- staging branch: staging -->
+<!-- development branch: develop -->
+<!-- feature branches: feature/* -->
+<!-- jenkins build: /var/jenkins_home/jobs/ctf-app -->
+<!-- jenkins workspace: /var/jenkins_home/workspace/ctf-app -->
+<!-- build number: 2847 -->
+<!-- git commit: abc123def456ghi789jkl012mno345 -->
+<!-- git tag: v1.2.3-prod -->
+<!-- deployment date: 2024-02-20 14:32:15 UTC -->
+<!-- last updated: 2024-02-20 -->
+<!-- build time: 45 seconds -->
+<!-- docker build: sha256:abc123def456ghi789jkl012mno345pqr678stu -->
+<!-- kubernetes pod: ctf-app-deployment-abc123def456 -->
+<!-- kubernetes service: ctf-app-svc.ctf-production.svc.cluster.local -->
+<!-- load balancer ip: 203.0.113.42 -->
+<!-- cloudflare zone: ctf.com -->
+<!-- cloudflare ray: 7a8b9c0d1e2f3g4h -->
+<!-- cert expiry: 2025-03-15 -->
+<!-- ssl/tls version: TLSv1.3 -->
+
+
+</head>
+<body>
+<h1>Welcome to</h1>
+<p>Tj <strong>200+ metadata headers</strong>,jsjs.</p>
+
+<p style="color: #888; font-size: 12px;">Hint: .</p>
+</body>
+</html>
