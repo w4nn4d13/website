@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+(function() {
+    const blockedHost = "w4nn4d13.github.io";
+    const allowedHost = "w4nn4d13.dpdns.org"; // replace with your real domain
+
+    if (window.location.hostname === blockedHost) {
+        // Option 1: Show Access Denied
+        document.documentElement.innerHTML = `
+            <head><title>Access Denied</title></head>
+            <body style="background:#000;color:#0f0;
+                         display:flex;align-items:center;
+                         justify-content:center;height:100vh;
+                         font-family:monospace;">
+                <div>
+                    <h1>403 - Direct Access Blocked</h1>
+                    <p>Please access this platform via official domain.</p>
+                </div>
+            </body>
+        `;
+        throw new Error("Direct GitHub access blocked.");
+    }
+
+})();
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="w4nn4d13">
@@ -8,6 +32,7 @@
     <meta name="robots" content="noindex, nofollow">
     <title>W4NN4D13 Market - Secure Anonymous Trading Platform</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <!-- IP Ban Warning Page -->
