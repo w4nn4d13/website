@@ -509,34 +509,10 @@
     </div>
 
     <script>
-        // Counter animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000;
-                const increment = target / (duration / 16);
-                let current = 0;
-                
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        counter.textContent = Math.floor(current).toLocaleString();
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target.toLocaleString();
-                    }
-                };
-                updateCounter();
-            });
-        }
-
-        // Random IP generator
         function generateRandomIP() {
             return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}`;
         }
 
-        // Show/Hide pages
         function showPage(pageId) {
             document.querySelectorAll('.page-container').forEach(page => {
                 page.style.display = 'none';
@@ -546,7 +522,6 @@
 
         function showMainPage() {
             showPage('main-page');
-            setTimeout(animateCounters, 100);
         }
 
         function showLoginPage() {
@@ -564,17 +539,15 @@
             startBanCountdown();
         }
 
-        // Login timer (5 seconds)
         function startLoginTimer() {
             let seconds = 5;
             const timerElement = document.getElementById('timer-seconds');
             const timerDisplay = document.getElementById('login-timer');
             const loginForm = document.getElementById('login-form');
-            
+
             const interval = setInterval(() => {
                 seconds--;
                 timerElement.textContent = seconds;
-                
                 if (seconds <= 0) {
                     clearInterval(interval);
                     timerDisplay.style.display = 'none';
@@ -583,27 +556,16 @@
             }, 1000);
         }
 
-        // Ban countdown timer
         function startBanCountdown() {
             let minutes = 4;
             let seconds = 59;
             const countdownElement = document.getElementById('ban-countdown');
-            
+
             const interval = setInterval(() => {
                 seconds--;
-                if (seconds < 0) {
-                    seconds = 59;
-                    minutes--;
-                }
-                
-                if (minutes < 0) {
-                    clearInterval(interval);
-                    countdownElement.textContent = 'EXPIRED';
-                    return;
-                }
-                
-                const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                countdownElement.textContent = display;
+                if (seconds < 0) { seconds = 59; minutes--; }
+                if (minutes < 0) { clearInterval(interval); countdownElement.textContent = 'EXPIRED'; return; }
+                countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             }, 1000);
         }
 
@@ -612,7 +574,7 @@
             const username = document.getElementById('login-username').value;
             const password = document.getElementById('login-password').value;
             const twofa = document.getElementById('login-2fa').value;
-            
+
             if (username === 'w4nn4d13' && password === 'admin123' && twofa === '123456') {
                 alert('Login successful! Access granted.');
                 showMainPage();
@@ -627,33 +589,14 @@
             alert('Registration requires valid invitation code. Contact existing members for access.');
         }
 
-        function triggerBan() {
-            showBanPage();
-        }
+        function triggerBan() { showBanPage(); }
 
         function bypassBan() {
             alert('Manual review request submitted. Security team will review your case within 24 hours.');
         }
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            showMainPage();
-        });
-
-        // Matrix rain effect
-        const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-        const matrixRain = document.querySelector('.matrix-rain');
-        
-        if (matrixRain) {
-            for (let i = 0; i < 50; i++) {
-                const span = document.createElement('span');
-                span.style.left = `${Math.random() * 100}%`;
-                span.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                span.style.animationDelay = `${Math.random() * 2}s`;
-                span.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                matrixRain.appendChild(span);
-            }
-        }
+        document.addEventListener('DOMContentLoaded', () => { showMainPage(); });
     </script>
+    <script src="app.js"></script>
 </body>
 </html>
