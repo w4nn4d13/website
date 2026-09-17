@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | W4NN4D13</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .four04-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .glitch-text {
+            font-size: clamp(80px, 15vw, 180px);
+            font-weight: 700;
+            color: var(--text-primary);
+            text-shadow: var(--shadow-glow);
+            position: relative;
+            animation: glitch-skew 4s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-text::before {
+            color: var(--accent-red);
+            animation: glitch-before 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            z-index: -1;
+        }
+
+        .glitch-text::after {
+            color: var(--accent-cyan);
+            animation: glitch-after 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+            z-index: -2;
+        }
+
+        @keyframes glitch-before {
+            0% { clip-path: inset(0 0 90% 0); transform: translate(-4px, -2px); }
+            10% { clip-path: inset(40% 0 20% 0); transform: translate(3px, 1px); }
+            20% { clip-path: inset(80% 0 0% 0); transform: translate(-2px, 3px); }
+            30% { clip-path: inset(10% 0 60% 0); transform: translate(4px, -1px); }
+            40% { clip-path: inset(50% 0 30% 0); transform: translate(-3px, 2px); }
+            50% { clip-path: inset(0 0 80% 0); transform: translate(2px, -3px); }
+            60% { clip-path: inset(70% 0 10% 0); transform: translate(-4px, 1px); }
+            70% { clip-path: inset(20% 0 50% 0); transform: translate(3px, -2px); }
+            80% { clip-path: inset(60% 0 20% 0); transform: translate(-1px, 3px); }
+            90% { clip-path: inset(30% 0 40% 0); transform: translate(4px, 2px); }
+            100% { clip-path: inset(0 0 70% 0); transform: translate(-2px, -1px); }
+        }
+
+        @keyframes glitch-after {
+            0% { clip-path: inset(70% 0 0 0); transform: translate(4px, 2px); }
+            10% { clip-path: inset(10% 0 60% 0); transform: translate(-3px, -1px); }
+            20% { clip-path: inset(50% 0 10% 0); transform: translate(2px, -3px); }
+            30% { clip-path: inset(0 0 80% 0); transform: translate(-4px, 1px); }
+            40% { clip-path: inset(60% 0 20% 0); transform: translate(3px, 2px); }
+            50% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, -3px); }
+            60% { clip-path: inset(80% 0 0 0); transform: translate(4px, -1px); }
+            70% { clip-path: inset(30% 0 40% 0); transform: translate(-3px, 2px); }
+            80% { clip-path: inset(0 0 70% 0); transform: translate(1px, -2px); }
+            90% { clip-path: inset(40% 0 30% 0); transform: translate(-4px, 3px); }
+            100% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 1px); }
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            2% { transform: skew(2deg); }
+            4% { transform: skew(0deg); }
+            48% { transform: skew(0deg); }
+            50% { transform: skew(-3deg); }
+            52% { transform: skew(0deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        .ascii-meme {
+            font-family: var(--font-mono);
+            font-size: clamp(6px, 1.2vw, 14px);
+            color: var(--text-secondary);
+            white-space: pre;
+            line-height: 1.1;
+            margin: 20px 0;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+
+        .meme-quote {
+            font-family: var(--font-mono);
+            font-size: clamp(14px, 2vw, 22px);
+            color: var(--accent-cyan);
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px 25px;
+            border: 1px solid var(--accent-cyan);
+            border-radius: 4px;
+            background: rgba(0, 255, 255, 0.05);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meme-quote::before {
+            content: ">";
+            color: var(--text-primary);
+            margin-right: 8px;
+        }
+
+        .fake-terminal {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--text-muted);
+            border-radius: 6px;
+            padding: 20px;
+            max-width: 650px;
+            width: 90%;
+            margin: 25px 0;
+            font-family: var(--font-mono);
+            font-size: clamp(11px, 1.5vw, 14px);
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1.5s forwards;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--text-muted);
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-title {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .terminal-line {
+            margin: 4px 0;
+            opacity: 0;
+        }
+
+        .terminal-line .prompt {
+            color: var(--accent-red);
+        }
+
+        .terminal-line .cmd {
+            color: var(--text-primary);
+        }
+
+        .terminal-line .output {
+            color: var(--text-muted);
+        }
+
+        .terminal-line .error {
+            color: var(--accent-red);
+        }
+
+        .terminal-line .success {
+            color: var(--accent-cyan);
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--text-primary);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 4s forwards;
+        }
+
+        .btn-404 {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            padding: 12px 28px;
+            border: 1px solid var(--text-primary);
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-404:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-404.danger {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .btn-404.danger:hover {
+            background: var(--accent-red);
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .skull-float {
+            position: fixed;
+            font-size: 30px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+            animation: skullDrift 6s ease-in forwards;
+        }
+
+        @keyframes skullDrift {
+            0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .secret-text {
+            color: var(--bg-primary);
+            font-size: 1px;
+            position: absolute;
+            bottom: 0;
+            user-select: all;
+        }
+
+        .travolta-zone {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 10px auto;
+        }
+
+        .travolta-question {
+            position: absolute;
+            font-size: 40px;
+            animation: floatAround 3s ease-in-out infinite;
+            color: var(--text-primary);
+            text-shadow: var(--shadow-glow);
+        }
+
+        .travolta-question:nth-child(1) { top: 0; left: 10px; animation-delay: 0s; }
+        .travolta-question:nth-child(2) { top: 20px; right: 0; animation-delay: 0.5s; }
+        .travolta-question:nth-child(3) { bottom: 0; left: 30px; animation-delay: 1s; }
+
+        @keyframes floatAround {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-15px) scale(1.2); opacity: 1; }
+        }
+
+        .konamiHint {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 5s forwards;
+        }
+
+        .rainbow {
+            animation: rainbow 2s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+            16% { color: #ff8800; text-shadow: 0 0 10px #ff8800; }
+            33% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
+            50% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+            66% { color: #0088ff; text-shadow: 0 0 10px #0088ff; }
+            83% { color: #8800ff; text-shadow: 0 0 10px #8800ff; }
+            100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+        }
+
+        .nyan-mode body {
+            background: #003 !important;
+        }
+
+        .flip {
+            animation: flipOut 1s ease forwards;
+        }
+
+        @keyframes flipOut {
+            0% { transform: perspective(600px) rotateY(0); }
+            100% { transform: perspective(600px) rotateY(1080deg); }
+        }
+
+        .meme-counter {
+            position: fixed;
+            top: 10px;
+            right: 15px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-rain" id="matrixRain"></div>
+
+    <div class="meme-counter">
+        LOST_VISITORS: <span id="lostCount">0</span> | MEMES_SERVED: <span id="memeCount">0</span>
+    </div>
+
+    <div class="four04-container">
+        <div class="travolta-zone">
+            <span class="travolta-question">?</span>
+            <span class="travolta-question">?</span>
+            <span class="travolta-question">?</span>
+        </div>
+
+        <div class="glitch-wrapper">
+            <div class="glitch-text" id="glitchText">404</div>
+        </div>
+
+        <div class="ascii-meme" id="asciiArt"></div>
+
+        <div class="meme-quote" id="memeQuote"></div>
+
+        <div class="fake-terminal" id="terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">root@w4nn4d13:~</span>
+            </div>
+            <div id="terminalContent"></div>
+        </div>
+
+        <div class="btn-row">
+            <a href="index.html" class="btn-404">[ RETURN TO BASE ]</a>
+            <button class="btn-404 danger" id="panicBtn">[ PANIC BUTTON ]</button>
+        </div>
+
+        <div class="konamiHint">hint: the konami code still works here...</div>
+    </div>
+
+    <span class="secret-text">Nice try inspecting the source. The flag isn't here... or is it? Try harder, script kiddie.</span>
+
+    <script>
+    const asciiArts = [
+`
+    _______________
+   |  ___________  |
+   | |  MISSING  | |
+   | |   PAGE    | |
+   | |  REWARD:  | |
+   | |   $0.00   | |
+   | |___________| |
+   |_______________|
+   / ************* \\
+  / *************** \\
+ (___________________)
+`,
+`
+         .-.
+        (o o)
+        | O |
+        |   |
+       .' '.
+      /  _  \\
+     | / \\ |  "I had the page...
+     |     |    it was RIGHT HERE"
+     '.___.'
+`,
+`
+  ____________________________
+ /                            \\
+|    THIS IS FINE.              |
+|                               |
+|    *page burning in flames*   |
+|                               |
+ \\____________________________/
+    \\
+     \\  ^__^
+      \\ (oo)\\______
+        (__)\\      )\\/\\
+             ||--w |
+             ||    |
+`,
+`
+  _____
+ /     \\     HACKERMAN
+| () () |
+|   ^   |    *hacks the 404 page*
+|  \\_/  |    *it's still 404*
+ \\_____/     *surprised pikachu*
+   | |
+  _| |_
+ |_____|
+`,
+`
+  +------------------------------+
+  |        ACHIEVEMENT           |
+  |        UNLOCKED!             |
+  |                              |
+  |    "Lost in Cyberspace"      |
+  |    Find a page that          |
+  |    doesn't exist             |
+  +------------------------------+
+`,
+`
+  _    _    __  __  __  __
+ | |  | |  |  \\/  ||  \\/  |
+ | |__| |  | |\\/| || |\\/| |
+ |  __  |  | |  | || |  | |
+ |_|  |_|  |_|  |_||_|  |_|
+
+  PAGE.EXE HAS STOPPED WORKING
+  [  OK  ]  [ SEND REPORT ]
+`
+    ];
+
+    const memeQuotes = [
+        "You must be truly desperate to come to me for help.",
+        "In Soviet Russia, page 404s YOU.",
+        "The page is a lie. There is no page.",
+        "Have you tried turning the internet off and on again?",
+        "Error 404: Your hacking skills not found.",
+        "I used to be a webpage like you, then I took a 404 to the knee.",
+        "The page you seek... it was deleted by a man named '4chan'.",
+        "Task failed successfully. The page exists in a quantum superposition.",
+        "First rule of 404 club: you do not talk about 404 club.",
+        "This page has left the chat.",
+        "Me: *clicks link*  The server: \"lmao no\"",
+        "404 means the page is in witness protection.",
+        "Roses are red, violets are blue, error 404, page not found for you.",
+        "The page was here a minute ago, I swear on my localhost.",
+        "git commit -m 'removed page to assert dominance'",
+        "sudo find / -name 'this-page' returned nothing. We're cooked.",
+    ];
+
+    const terminalLines = [
+        { prompt: "root@w4nn4d13:~# ", cmd: "find / -name 'your-page' 2>/dev/null" },
+        { output: "Searching..." },
+        { output: "..." },
+        { output: "..." },
+        { error: "find: No results. The page has ghosted you." },
+        { prompt: "root@w4nn4d13:~# ", cmd: "curl -I https://w4nn4d13.dpdns.org" + window.location.pathname },
+        { error: "HTTP/1.1 404 Not Found" },
+        { error: "X-Meme-Status: absolutely-cooked" },
+        { error: "X-Vibe-Check: failed" },
+        { output: "" },
+        { prompt: "root@w4nn4d13:~# ", cmd: "cat /var/log/excuses.log | tail -1" },
+        { success: "\"It works on my machine\" - Every developer ever" },
+        { output: "" },
+        { prompt: "root@w4nn4d13:~# ", cmd: "blame --who-deleted-the-page" },
+        { error: "ERROR: It was you. It was always you." },
+        { output: "" },
+        { prompt: "root@w4nn4d13:~# ", cursor: true }
+    ];
+
+    // Random ASCII art and quote
+    const artEl = document.getElementById('asciiArt');
+    const quoteEl = document.getElementById('memeQuote');
+    const artIndex = Math.floor(Math.random() * asciiArts.length);
+    const quoteIndex = Math.floor(Math.random() * memeQuotes.length);
+    artEl.textContent = asciiArts[artIndex];
+    quoteEl.innerHTML = '<span style="color:var(--text-primary)">></span> ' + memeQuotes[quoteIndex];
+
+    // Terminal typewriter
+    const termContent = document.getElementById('terminalContent');
+    let lineIndex = 0;
+
+    function typeTerminalLine() {
+        if (lineIndex >= terminalLines.length) return;
+
+        const lineData = terminalLines[lineIndex];
+        const lineEl = document.createElement('div');
+        lineEl.classList.add('terminal-line');
+
+        if (lineData.cursor) {
+            lineEl.innerHTML = `<span class="prompt">${lineData.prompt}</span><span class="cursor-blink"></span>`;
+            lineEl.style.opacity = '1';
+            termContent.appendChild(lineEl);
+            return;
+        }
+
+        let html = '';
+        if (lineData.prompt) html += `<span class="prompt">${lineData.prompt}</span>`;
+        if (lineData.cmd) html += `<span class="cmd">${lineData.cmd}</span>`;
+        if (lineData.output !== undefined) html += `<span class="output">${lineData.output}</span>`;
+        if (lineData.error) html += `<span class="error">${lineData.error}</span>`;
+        if (lineData.success) html += `<span class="success">${lineData.success}</span>`;
+
+        lineEl.innerHTML = html;
+        termContent.appendChild(lineEl);
+
+        setTimeout(() => {
+            lineEl.style.opacity = '1';
+            lineIndex++;
+            const delay = lineData.cmd ? 400 : lineData.output === "..." ? 300 : 200;
+            setTimeout(typeTerminalLine, delay);
+        }, 50);
+    }
+
+    setTimeout(typeTerminalLine, 2000);
+
+    // Matrix rain
+    const matrixRain = document.getElementById('matrixRain');
+    const chars = '01アイウエオカキクケコサシスセソ404LMAO';
+
+    function createDrop() {
+        const span = document.createElement('span');
+        span.textContent = chars[Math.floor(Math.random() * chars.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDuration = Math.random() * 3 + 2 + 's';
+        span.style.fontSize = Math.random() * 14 + 10 + 'px';
+        span.style.opacity = Math.random() * 0.4 + 0.1;
+        matrixRain.appendChild(span);
+        setTimeout(() => span.remove(), 5000);
+    }
+
+    setInterval(createDrop, 100);
+
+    // Meme counters
+    let lostCount = parseInt(localStorage.getItem('w4nn4d13_lost') || '0') + 1;
+    let memeCount = parseInt(localStorage.getItem('w4nn4d13_memes') || '0') + 1;
+    localStorage.setItem('w4nn4d13_lost', lostCount);
+    localStorage.setItem('w4nn4d13_memes', memeCount);
+    document.getElementById('lostCount').textContent = lostCount;
+    document.getElementById('memeCount').textContent = memeCount;
+
+    // Panic button
+    let panicLevel = 0;
+    const panicMessages = [
+        "INITIATING PANIC PROTOCOL...",
+        "DELETING SYSTEM32... just kidding",
+        "CONTACTING THE FBI... wait wrong button",
+        "LAUNCHING NUCLEAR CODES... access denied",
+        "CALLING MOM... line busy",
+        "ok I'm out of ideas. go home."
+    ];
+
+    document.getElementById('panicBtn').addEventListener('click', function() {
+        if (panicLevel < panicMessages.length) {
+            const msg = panicMessages[panicLevel];
+            this.textContent = '[ ' + msg + ' ]';
+            this.classList.add('flip');
+            setTimeout(() => this.classList.remove('flip'), 1000);
+
+            // Spawn floating skulls
+            for (let i = 0; i < 5; i++) {
+                spawnSkull();
+            }
+
+            panicLevel++;
+            if (panicLevel >= panicMessages.length) {
+                setTimeout(() => {
+                    this.textContent = '[ PANIC BUTTON ]';
+                    panicLevel = 0;
+                }, 3000);
+            }
+        }
+    });
+
+    function spawnSkull() {
+        const skulls = ['💀', '☠', '👻', '🔥', '⚠', '🤡', '😱'];
+        const el = document.createElement('div');
+        el.className = 'skull-float';
+        el.textContent = skulls[Math.floor(Math.random() * skulls.length)];
+        el.style.left = Math.random() * 90 + 5 + 'vw';
+        el.style.bottom = '0';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 6000);
+    }
+
+    // Konami code easter egg
+    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                activateNyanMode();
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+
+    function activateNyanMode() {
+        document.body.style.transition = 'all 0.5s';
+        document.getElementById('glitchText').classList.add('rainbow');
+        document.getElementById('glitchText').textContent = 'NYAN';
+
+        const quoteEl = document.getElementById('memeQuote');
+        quoteEl.innerHTML = '<span class="rainbow">YOU FOUND THE SECRET. Here, have a mass of nothing. Congrats.</span>';
+        quoteEl.classList.add('rainbow');
+
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => spawnSkull(), i * 100);
+        }
+    }
+
+    // Click counter easter egg on 404 text
+    let clickCount = 0;
+    document.getElementById('glitchText').addEventListener('click', function() {
+        clickCount++;
+        if (clickCount === 5) {
+            this.textContent = '405';
+            setTimeout(() => { this.textContent = '404'; }, 1500);
+        } else if (clickCount === 10) {
+            this.textContent = '200 OK jk';
+            setTimeout(() => { this.textContent = '404'; }, 2000);
+        } else if (clickCount === 15) {
+            this.textContent = '418';
+            quoteEl.innerHTML = '<span style="color:var(--text-primary)">></span> I\'m a teapot. Short and stout. Error me out.';
+            setTimeout(() => { this.textContent = '404'; }, 2000);
+        } else if (clickCount >= 20) {
+            this.textContent = 'STOP';
+            this.style.fontSize = '40px';
+            setTimeout(() => {
+                this.textContent = '404';
+                this.style.fontSize = '';
+                clickCount = 0;
+            }, 2000);
+        }
+    });
+
+    // Rotate meme quotes every 8 seconds
+    let currentQuote = quoteIndex;
+    setInterval(() => {
+        currentQuote = (currentQuote + 1) % memeQuotes.length;
+        quoteEl.style.opacity = '0';
+        setTimeout(() => {
+            quoteEl.innerHTML = '<span style="color:var(--text-primary)">></span> ' + memeQuotes[currentQuote];
+            quoteEl.style.opacity = '1';
+            memeCount++;
+            localStorage.setItem('w4nn4d13_memes', memeCount);
+            document.getElementById('memeCount').textContent = memeCount;
+        }, 400);
+    }, 8000);
+
+    // Console easter egg
+    console.log('%c NICE TRY, HACKER ', 'background: #ff0000; color: #fff; font-size: 24px; font-weight: bold; padding: 10px;');
+    console.log('%c The flag is not in the console either... but you get points for trying.', 'color: #00ff00; font-size: 14px;');
+    console.log('%c gg no re', 'color: #888; font-size: 10px;');
+    </script>
+</body>
+</html>
